@@ -1,3 +1,8 @@
-public class Server {
+
+public class Server extends Thread {
+private Thread thread;
+private Socket socket;
+private ServerSocket servSocket;
+
 
 }
