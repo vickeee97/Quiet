@@ -4,5 +4,11 @@ private Thread thread;
 private Socket socket;
 private ServerSocket servSocket;
 
+public Server(int port) {
+try {
+  servSocket = new ServerSocket(port);
+} catch (IOException e) {
+  e.printStackTrace();
+}
 
 }
