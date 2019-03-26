@@ -10,6 +10,7 @@ public class Client {
 		Socket socket = new Socket("Localhost", 4555);
 		try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()))) {
 			oos.writeObject(str);
+			oos.flush();
 		} catch (IOException e) {}
 				
 	}
