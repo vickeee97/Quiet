@@ -11,6 +11,7 @@ public class Client {
 		try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()))) {
 			oos.writeObject(str);
 			oos.flush();
+			oos.close();
 		} catch (IOException e) {}
 				
 	}
