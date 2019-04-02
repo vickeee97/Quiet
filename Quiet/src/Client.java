@@ -7,6 +7,7 @@ import java.net.Socket;
 public class Client {
 	public static void main(String arg[]) throws IOException{
 		String str = "hej";
+		String test = "test";
 		Socket socket = new Socket("Localhost", 4555);
 		try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()))) {
 			oos.writeObject(str);
