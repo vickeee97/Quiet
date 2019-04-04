@@ -5,7 +5,9 @@ import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.math.BigInteger;
 import java.security.*;
 
 public class RSA {
@@ -13,7 +15,7 @@ public class RSA {
 	private static final String PUBLIC_KEY_FILE = "Public.key";
 	private static final String PRIVATE_KEY_FILE = "Private.key";
 	
-	public void keys () throws InvalidKeySpecException {
+	public void keys () throws InvalidKeySpecException, IOException {
 		try {
 			KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
 			keyPairGenerator.initialize(2048);
