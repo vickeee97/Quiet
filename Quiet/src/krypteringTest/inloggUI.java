@@ -49,7 +49,7 @@ public class inloggUI {
 		JLabel label = new JLabel();
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/quiet.png"));
 		label = new JLabel(img);
-		label.setBounds(10, 11, 104, 95);
+		label.setBounds(120, 11, 104, 95);
 		frame.getContentPane().add(label);
 		
 		textField = new JTextField();
