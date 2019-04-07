@@ -14,7 +14,7 @@ public class kryptering {
         PrivateKey privateKey = keyPair.getPrivate();
         
         // sign the message
-        byte [] signed = encrypt(privateKey, "This is a secret message");     
+        byte [] signed = encrypt(privateKey, "This is a secret message");
         System.out.println(new String(signed));  // <<signed message>>
         
         // verify the message
