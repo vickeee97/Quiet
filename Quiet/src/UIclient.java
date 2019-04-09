@@ -22,7 +22,11 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JTextPane;
-
+/**
+ * En klass som hanterar UI för klienten för att till exempel skicka medddelandna
+ * @author Viktor
+ *
+ */
 public class UIclient {
 
 	private JFrame frame;

@@ -7,7 +7,11 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
+/**
+ * En klass som hanterar UI till inloggen
+ * @author Viktor
+ * 
+ */
 public class inloggUI {
 
 	private JFrame frame;

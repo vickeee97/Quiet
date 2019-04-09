@@ -5,7 +5,11 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 
 import javax.crypto.Cipher;
-
+/**
+ * En klass som hanterar kryptering och avkryptering samt fixar publika och privata nyklar. 
+ * @author Viktor
+ *
+ */
 public class kryptering {
 	public static void main(String [] args) throws Exception {
         // generate public and private keys

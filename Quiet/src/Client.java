@@ -3,7 +3,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-
+/**
+ * En klass som hanterar det som skickas från klienten.
+ * @author Viktor
+ *
+ */
 public class Client {
 	public static void main(String arg[]) throws IOException{
 		String str = "hej";

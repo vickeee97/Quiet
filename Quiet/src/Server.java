@@ -3,7 +3,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+/**
+ * En klass som hanterar logiken för servern.
+ * @author Viktor
+ *
+ */
 public class Server {
 
 	public static void main(String arg[]) throws IOException, ClassNotFoundException{
