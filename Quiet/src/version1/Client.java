@@ -12,11 +12,15 @@ import java.util.LinkedList;
  *
  */
 public class Client {
-	private Socket socket;
 	private User user;
+	private controllerClient controllerClient;
+	
+	private Socket socket;
 	private LinkedList<Message> recievedMessages = new LinkedList<Message>();
 	private String ip;
 	private int port;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
 	
 	private Client (String ip, int port) {
 		this.ip = ip;
@@ -25,7 +29,9 @@ public class Client {
 	
 	public void run(){
 		try {
-			
+			while(true) {
+				
+			}
 		}
 	}
 	
@@ -33,9 +39,32 @@ public class Client {
 	public void connect(){
 		try{
 			socket = new Socket(ip,port);
-			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
 		} catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public User getUser(){
+		return user;
+	}
+	
+	public void sendUser(User user) {
+		try {
+			oos.writeObject(user);
+			oos.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public synchronized void sendMessage(String message, User sender){
+		Message msg = new Message(message, sender);
+		try {
+			oos.writeObject(msg);
+			oos.flush();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

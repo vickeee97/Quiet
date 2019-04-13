@@ -26,7 +26,12 @@ public class Message {
 		this.sender = sender;
 		this.recievers = recievers;
 	}
-	
+
+	public Message(String message, User sender) {
+		this.text = message;
+		this.sender = sender;
+	}
+
 	public void setText(String text){
 		this.text = text;
 	}
