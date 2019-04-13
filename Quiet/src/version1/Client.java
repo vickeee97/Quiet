@@ -13,7 +13,7 @@ import java.util.LinkedList;
  */
 public class Client {
 	private User user;
-	private controllerClient controllerClient;
+	
 	
 	private Socket socket;
 	private LinkedList<Message> recievedMessages = new LinkedList<Message>();
