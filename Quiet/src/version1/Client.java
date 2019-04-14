@@ -81,7 +81,7 @@ public class Client extends Thread{
 	
 	public static void main(String arg[]) throws IOException{
 		UIclient ui = new UIclient();
-//		Client client = new Client("Localhost", 4555, ui);
+		Client client = new Client("Localhost", 4555, ui);
 		JFrame frame = new JFrame("Quiet");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(ui);
