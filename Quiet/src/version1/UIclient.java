@@ -28,7 +28,7 @@ import javax.swing.JTextPane;
  * @author Viktor
  *
  */
-public class UIclient {
+public class UIclient extends JPanel implements ActionListener{
 
 	private Client client;
 	private JFrame frame;
@@ -39,6 +39,8 @@ public class UIclient {
 	/**
 	 * Launch the application.
 	 */
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -79,8 +81,8 @@ public class UIclient {
 		JButton btnNewButton_1 = new JButton("Encrypt and \n Send");
 		btnNewButton_1.setBounds(674, 375, 168, 60);
 		frame.getContentPane().add(btnNewButton_1);
-		event e = new event();
-		btnNewButton_1.addActionListener(e);
+//		event e = new event();
+		btnNewButton_1.addActionListener(this);
 
 		JList list = new JList();
 		list.setBounds(130, 163, 1, 1);
@@ -121,8 +123,6 @@ public class UIclient {
 		textArea_1.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
 	}
-
-	public class event implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			String text = textArea_2.getText();
 			if(text == null ? "" == null : text.equals("")) {
@@ -133,4 +133,4 @@ public class UIclient {
 			textArea_2.setText("");
 		}
 	}
-}
+

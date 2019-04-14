@@ -1,10 +1,13 @@
 package version1;
+import java.awt.Component;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.LinkedList;
+
+import javax.swing.JFrame;
 
 /**
  * En klass som hanterar det som skickas fr�n klienten.
@@ -77,6 +80,14 @@ public class Client {
 	}
 	
 	public static void main(String arg[]) throws IOException{
+		UIclient ui = new UIclient();
+//		Client client = new Client("Localhost", 4555, ui);
+		JFrame frame = new JFrame("Quiet");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(ui);
+		frame.pack();
+		frame.setVisible(true);
+		
 		String str = "hej";
 		
 		Socket socket = new Socket("Localhost", 4555);
