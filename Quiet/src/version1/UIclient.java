@@ -101,7 +101,7 @@ public class UIclient extends JPanel implements ActionListener{
 		frame.getContentPane().add(scrollBar_1);
 
 		JTextPane txtpnVnner = new JTextPane();
-		txtpnVnner.setText(" Vï¿½nner");
+		txtpnVnner.setText(" Vänner");
 		txtpnVnner.setBounds(10, 117, 168, 318);
 		frame.getContentPane().add(txtpnVnner);
 		txtpnVnner.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));

@@ -22,6 +22,8 @@ public class inloggUI implements ActionListener{
 	private JTextField textField_1;
 	private JButton btnLoggaIn = new JButton("Logga in");
     private JButton btnAvbryt = new JButton("Avbryt");
+    private String username;
+	private String password;
     
 
 	/**
@@ -72,20 +74,18 @@ public class inloggUI implements ActionListener{
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblAnvndarnamn = new JLabel("Anv\u00E4ndarnamn");
+		JLabel lblAnvndarnamn = new JLabel("Användarnamn");
 		lblAnvndarnamn.setBounds(73, 122, 113, 14);
 		frame.getContentPane().add(lblAnvndarnamn);
 		
-		JLabel lblLsenord = new JLabel("L\u00F6senord");
+		JLabel lblLsenord = new JLabel("Lösenord");
 		lblLsenord.setBounds(73, 167, 46, 14);
 		frame.getContentPane().add(lblLsenord);
 		
-		JButton btnLoggaIn = new JButton("Logga in");
 		btnLoggaIn.setBounds(120, 213, 113, 23);
 		frame.getContentPane().add(btnLoggaIn);
 		btnLoggaIn.addActionListener(this);
 		
-		JButton btnAvbryt = new JButton("Avbryt");
 		btnAvbryt.setBounds(133, 357, 89, 23);
 		frame.getContentPane().add(btnAvbryt);
 		btnAvbryt.addActionListener(this);
@@ -104,7 +104,17 @@ public class inloggUI implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnLoggaIn) {
-			System.out.println("logga in");
+			System.out.println("inloggad");
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						UIclient window = new UIclient();
+						window.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		} else if (e.getSource() == btnAvbryt) {
 			System.exit(0);
 		}
