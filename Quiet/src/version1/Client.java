@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * En klass som hanterar det som skickas fr�n klienten.
@@ -80,13 +81,16 @@ public class Client extends Thread{
 	}
 	
 	public static void main(String arg[]) throws IOException{
-		UIclient ui = new UIclient();
-		Client client = new Client("Localhost", 4555, ui);
-		JFrame frame = new JFrame("Quiet");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(ui);
-		frame.pack();
-		frame.setVisible(true);
+		SwingUtilities.invokeLater(new Runnable() {
+		public void run() {
+			try {
+				UIclient window = new UIclient();
+				window.frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		});
 		
 		String str = "hej";
 		

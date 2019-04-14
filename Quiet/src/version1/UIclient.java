@@ -31,7 +31,7 @@ import javax.swing.JTextPane;
 public class UIclient extends JPanel implements ActionListener{
 
 	private Client client;
-	private JFrame frame;
+	JFrame frame;
 	private AbstractButton textArea;
 	JTextArea textArea_2;
 	JTextArea textArea_1;
