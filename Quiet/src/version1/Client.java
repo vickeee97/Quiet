@@ -14,24 +14,31 @@ import java.util.LinkedList;
 public class Client {
 	private User user;
 	
-	
 	private Socket socket;
 	private LinkedList<Message> recievedMessages = new LinkedList<Message>();
 	private String ip;
 	private int port;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
+	private UIclient ui;
 	
-	private Client (String ip, int port) {
+	private Client (String ip, int port, UIclient ui) {
 		this.ip = ip;
 		this.port = port;
+		this.ui = ui;
+		ui.sendClient(this);
 	}
 	
 	public void run(){
 		try {
 			while(true) {
-				
+				Object o = ois.readObject();
+				if(o instanceof Message) {
+					Message message = (Message) o;
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

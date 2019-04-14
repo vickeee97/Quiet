@@ -30,6 +30,7 @@ import javax.swing.JTextPane;
  */
 public class UIclient {
 
+	private Client client;
 	private JFrame frame;
 	private AbstractButton textArea;
 	JTextArea textArea_2;
@@ -49,6 +50,10 @@ public class UIclient {
 				}
 			}
 		});
+	}
+	
+	public void sendClient(Client client) {
+		this.client = client;
 	}
 
 	/**
