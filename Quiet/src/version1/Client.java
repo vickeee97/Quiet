@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  * @author Viktor
  *
  */
-public class Client {
+public class Client extends Thread{
 	private User user;
 	
 	private Socket socket;
