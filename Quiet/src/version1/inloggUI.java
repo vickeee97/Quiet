@@ -2,6 +2,8 @@ package version1;
 
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -13,11 +15,14 @@ import javax.swing.JButton;
  * @author Viktor
  * 
  */
-public class inloggUI {
+public class inloggUI implements ActionListener{
 
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JButton btnLoggaIn = new JButton("Logga in");
+    private JButton btnAvbryt = new JButton("Avbryt");
+    
 
 	/**
 	 * Launch the application.
@@ -78,9 +83,23 @@ public class inloggUI {
 		JButton btnLoggaIn = new JButton("Logga in");
 		btnLoggaIn.setBounds(120, 213, 113, 23);
 		frame.getContentPane().add(btnLoggaIn);
+		btnLoggaIn.addActionListener(this);
 		
 		JButton btnAvbryt = new JButton("Avbryt");
 		btnAvbryt.setBounds(133, 357, 89, 23);
 		frame.getContentPane().add(btnAvbryt);
+		btnAvbryt.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object o = e.getSource();
+        if(o==btnLoggaIn) {
+            String username = textField.getText();
+        }
+        if(o==btnAvbryt) {
+            System.exit(0);
+        }
+		
 	}
 }
