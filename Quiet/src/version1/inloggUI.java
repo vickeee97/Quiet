@@ -2,6 +2,7 @@ package version1;
 
 
 import java.awt.EventQueue;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -108,8 +109,9 @@ public class inloggUI implements ActionListener{
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						UIclient window = new UIclient();
-						window.frame.setVisible(true);
+						frame.setVisible(false);
+						UIclient window2 = new UIclient();
+						window2.frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
