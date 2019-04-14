@@ -91,18 +91,6 @@ public class inloggUI implements ActionListener{
 		btnAvbryt.addActionListener(this);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object o = e.getSource();
-        if(o==btnLoggaIn) {
-            String username = textField.getText();
-        }
-        if(o==btnAvbryt) {
-            System.exit(0);
-        }
-		
-	}
-
 	public Object getUsername() {
 		// TODO Auto-generated method stub
 		return null;
@@ -111,5 +99,14 @@ public class inloggUI implements ActionListener{
 	public Object getPassword() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnLoggaIn) {
+			System.out.println("logga in");
+		} else if (e.getSource() == btnAvbryt) {
+			System.exit(0);
+		}
 	}
 }
