@@ -1,8 +1,12 @@
 package version1;
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
@@ -15,6 +19,10 @@ public class Server extends Thread {
 
 	private ServerSocket serverSocket;
 	private LinkedList<handler> handlerList = new LinkedList<handler>();
+	private Socket client;
+    private BufferedReader reader;
+    private PrintWriter writer;
+    private inloggUI inlogg = new inloggUI();
 	
 	
 	public Server(int port) {
@@ -48,6 +56,23 @@ public class Server extends Thread {
 		System.out.println("Client connected");
 	}
 	
+	public void login() throws Exception{
+        //buffered reader som läser datan från clienten
+        reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+        String username = reader.readLine();
+        String password = reader.readLine();
+
+        //printwriter som skriver data till clienten
+        writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+
+        if(username.equals(inlogg.getUsername()) &&password.equals(inlogg.getPassword())){
+            writer.println("Välkommen " + username);
+        }else { 
+            writer.println("Inloggningen misslyckades");
+        }
+    }
+
 	
 	private class handler extends Thread {
 		private Socket socket;
