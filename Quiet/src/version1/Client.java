@@ -25,6 +25,7 @@ public class Client extends Thread{
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 	private UIclient ui;
+	private inloggUI inloggUI;
 	
 	private Client (String ip, int port, UIclient ui) {
 		this.ip = ip;
@@ -84,7 +85,7 @@ public class Client extends Thread{
 		SwingUtilities.invokeLater(new Runnable() {
 		public void run() {
 			try {
-				UIclient window = new UIclient();
+				inloggUI window = new inloggUI();
 				window.frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
