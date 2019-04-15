@@ -113,6 +113,7 @@ public class inloggUI implements ActionListener{
 			JOptionPane.showMessageDialog(null, "Du måste skriva in ett användarnamn");
 			}else {
 				username = tfUsername.getText();
+				writeUser();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
@@ -130,11 +131,11 @@ public class inloggUI implements ActionListener{
 		}
 	}
 	
-	public void writeName () {
+	public void writeUser () {
 		OutputStream os = null;
 		try { 
-			os = new FileOutputStream(files/users.txt);
-			os.write(username.getBytes()0, username.length());
+			os = new FileOutputStream("files/users.txt");
+			os.write(username.getBytes(), username.length(), 0);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
