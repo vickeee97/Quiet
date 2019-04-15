@@ -143,14 +143,13 @@ public class UIclient extends JPanel implements ActionListener {
 	}
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == btnNewButton_1) {
-//			String text = textArea_2.getText();
-//			if(text == null ? "" == null : text.equals("")) {
-//				textArea_2.setText("Please enter some text");
-//			} else {
-//				LMMessageList2.addElement("hej");
-//			}
-//			textArea_2.setText("");
-				LMMessageList2.addElement("hej");
+			String text = textArea_2.getText();
+			if(text == null ? "" == null : text.equals("")) {
+				textArea_2.setText("Please enter some text");
+			} else {
+				LMMessageList2.addElement(text);
+			}
+			textArea_2.setText("");
 		}}
 	}
 
