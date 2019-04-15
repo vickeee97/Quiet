@@ -93,14 +93,13 @@ public class Client extends Thread{
 		}
 		});
 		
-		String str = "hej";
+//		String str = "hej";
 		
-		Socket socket = new Socket("Localhost", 4555);
-		try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()))) {
-			oos.writeObject(str);
-			oos.flush();
-			oos.close();
-		} catch (IOException e) {}
+//		try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()))) {
+//			oos.writeObject(str);
+//			oos.flush();
+//			oos.close();
+//		} catch (IOException e) {}
 				
 	}
 }

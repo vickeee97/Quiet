@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
 
-
 /**
  * En klass som hanterar UI f�r klienten f�r att till exempel skicka medddelandna
  * @author Viktor
@@ -17,27 +16,13 @@ public class UIclient extends JPanel implements ActionListener {
 	JFrame frame;
 	private AbstractButton textArea;
 	private JTextArea textArea_2;
-	private DefaultListModel<String> LMMessageList2 =  new DefaultListModel();
+	private DefaultListModel<String> LMMessageList2;
 	private JButton btnNewButton_1 = new JButton("Encrypt and send");
 	
 
 	/**
 	 * Launch the application.
 	 */
-	
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UIclient window = new UIclient();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	public void sendClient(Client client) {
 		this.client = client;
@@ -66,35 +51,25 @@ public class UIclient extends JPanel implements ActionListener {
 		
 		btnNewButton_1.setBounds(674, 375, 168, 60);
 		frame.getContentPane().add(btnNewButton_1);
-//		event e = new event();
 		btnNewButton_1.addActionListener(this);
 
 		JList list = new JList();
 		list.setBounds(130, 163, 1, 1);
 		frame.getContentPane().add(list);
 
-//		JScrollBar scrollBar = new JScrollBar();
-//		scrollBar.setBounds(852, 11, 17, 353);
-//		frame.getContentPane().add(scrollBar);
 
 		JLabel lblNamn = new JLabel("Viktor");
 		lblNamn.setBounds(120, 37, 46, 14);
 		frame.getContentPane().add(lblNamn);
 
-//		JScrollBar scrollBar_1 = new JScrollBar();
-//		scrollBar_1.setBounds(179, 117, 17, 318);
-//		frame.getContentPane().add(scrollBar_1);
-
-		DefaultListModel LMMessageList = new DefaultListModel();
-		JList messageList = new JList(LMMessageList);
-		JScrollPane scrollMessageList = new JScrollPane(messageList);
-		JScrollBar messageScrollBar = scrollMessageList.getVerticalScrollBar();
-//		JTextPane txtpnVnner = new JTextPane();
-//		txtpnVnner.setText(" V�nner");
-		scrollMessageList.setBounds(10, 117, 178, 318);
-		frame.getContentPane().add(scrollMessageList);
-//		scrollMessageList.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-
+		DefaultListModel LMKontaktList = new DefaultListModel();
+		JList kontaktList = new JList(LMKontaktList);
+		JScrollPane jspKontaktList = new JScrollPane(kontaktList);
+		JScrollBar KontaktScrollBar = jspKontaktList.getVerticalScrollBar();
+		jspKontaktList.setBounds(10, 117, 178, 318);
+		frame.getContentPane().add(jspKontaktList);
+		jspKontaktList.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		
 		JLabel label = new JLabel();
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/insertImageHere.png"));
 		label = new JLabel(img);
@@ -106,8 +81,7 @@ public class UIclient extends JPanel implements ActionListener {
 		frame.getContentPane().add(textArea_2);
 		textArea_2.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		
-//		textArea_1 = new JTextArea();
-//		DefaultListModel LMMessageList2 = new DefaultListModel();
+		LMMessageList2 = new DefaultListModel();
 		JList messageList2 = new JList(LMMessageList2);
 		JScrollPane scrollMessageList2 = new JScrollPane(messageList2);
 		JScrollBar messageScrollBar2 = scrollMessageList2.getVerticalScrollBar();
@@ -116,9 +90,7 @@ public class UIclient extends JPanel implements ActionListener {
 		messageList2.setVisibleRowCount(-1);
 		scrollMessageList2.setBounds(206, 11, 636, 353);
 		frame.getContentPane().add(scrollMessageList2);
-
-		
-//		textArea_1.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		scrollMessageList2.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
 	}
 		public void actionPerformed(ActionEvent e) {
