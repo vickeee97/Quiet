@@ -1,6 +1,8 @@
 package version1;
 import java.awt.Component;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -20,6 +22,7 @@ public class Client extends Thread{
 	
 	private Socket socket;
 	private LinkedList<Message> recievedMessages = new LinkedList<Message>();
+	private LinkedList<User> onlineUsers = new LinkedList<User>();
 	private String ip;
 	private int port;
 	private ObjectInputStream ois;
@@ -78,6 +81,22 @@ public class Client extends Thread{
 			oos.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	//metod som läser av files/users, skapåar User objekt med användarnamnen och lägger dem i LinkedListen onlineUsers -> denna ska sen upp i UIt
+	public void getUsers () {
+		try { BufferedReader br = new BufferedReader (new FileReader("files/users"));
+		User temp;
+		String name;
+		    while ((name = br.readLine()) != null) {
+		    	temp = new User (name);
+		    	onlineUsers.add(temp);
+		    }
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
 		}
 	}
 	
