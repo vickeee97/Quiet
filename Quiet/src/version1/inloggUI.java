@@ -106,25 +106,22 @@ public class inloggUI implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnLoggaIn) {
-//			try {
-//				String st=tfUsername.getText();
-//				System.out.println("inloggad");
-//				EventQueue.invokeLater(new Runnable() {
-//				public void run() {
-//					try {
-//						frame.setVisible(false);
-//						UIclient window2 = new UIclient();
-//						window2.frame.setVisible(true);
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			});
-//			}catch(NullPointerException e1) {
-//				JOptionPane.showMessageDialog(null, "Du måste skriva in ett användarnamn");
-//			}
-			
-		} else if (e.getSource() == btnAvbryt) {
+			if(tfUsername.getText().length()==0) {
+			JOptionPane.showMessageDialog(null, "Du måste skriva in ett användarnamn");
+			}else {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							frame.setVisible(false);
+							UIclient window2 = new UIclient();
+							window2.frame.setVisible(true);
+						}catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		}else if (e.getSource() == btnAvbryt) {
 			System.exit(0);
 		}
 	}
