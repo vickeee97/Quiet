@@ -37,7 +37,7 @@ public class UIclient extends JPanel implements ActionListener {
 	JFrame frame;
 	private AbstractButton textArea;
 	private JTextArea textArea_2;
-	private DefaultListModel<String> LMMessageList2;
+	private DefaultListModel<String> LMMessageList2 =  new DefaultListModel();
 	private JButton btnNewButton_1 = new JButton("Encrypt and send");
 	
 
@@ -127,7 +127,7 @@ public class UIclient extends JPanel implements ActionListener {
 		textArea_2.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		
 //		textArea_1 = new JTextArea();
-		DefaultListModel LMMessageList2 = new DefaultListModel();
+//		DefaultListModel LMMessageList2 = new DefaultListModel();
 		JList messageList2 = new JList(LMMessageList2);
 		JScrollPane scrollMessageList2 = new JScrollPane(messageList2);
 		JScrollBar messageScrollBar2 = scrollMessageList2.getVerticalScrollBar();
