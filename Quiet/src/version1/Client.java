@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -22,7 +23,7 @@ public class Client extends Thread{
 	
 	private Socket socket;
 	private LinkedList<Message> recievedMessages = new LinkedList<Message>();
-	private LinkedList<User> onlineUsers = new LinkedList<User>();
+	private LinkedList<User> onlineUsers = new LinkedList<User>(); //borde ändras till bara users kanske om det inte ska vara så att dem bara visas om dem är online
 	private String ip;
 	private int port;
 	private ObjectInputStream ois;
@@ -84,7 +85,7 @@ public class Client extends Thread{
 		}
 	}
 	
-	//metod som läser av files/users, skapåar User objekt med användarnamnen och lägger dem i LinkedListen onlineUsers -> denna ska sen upp i UIt
+	//metod som läser av files/users, skapar User objekt med användarnamnen och lägger dem i LinkedListen onlineUsers -> denna ska sen upp i UIt
 	public void getUsers () {
 		try { BufferedReader br = new BufferedReader (new FileReader("files/users"));
 		User temp;
@@ -92,6 +93,9 @@ public class Client extends Thread{
 		    while ((name = br.readLine()) != null) {
 		    	temp = new User (name);
 		    	onlineUsers.add(temp);
+		    	if (onlineUsers.isEmpty() == true) {
+		    		JOptionPane.showMessageDialog(null, "Listan är tom felmeddelande temp", "fel", 0); 
+		    	}
 		    }
 			
 		} catch (Exception e) {
