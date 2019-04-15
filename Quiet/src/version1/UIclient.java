@@ -40,7 +40,7 @@ public class UIclient extends JPanel implements ActionListener {
 	 */
 	private void initialize() {
 		frame = new JFrame("Quiet");
-		frame.setBounds(100, 100, 895, 485);
+		frame.setBounds(100, 100, 852, 467);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
