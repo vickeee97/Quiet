@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 /**
@@ -19,7 +20,7 @@ import javax.swing.JButton;
 public class inloggUI implements ActionListener{
 
 	JFrame frame;
-	private JTextField textField;
+	private JTextField tfUsername;
 	private JTextField textField_1;
 	private JButton btnLoggaIn = new JButton("Logga in");
     private JButton btnAvbryt = new JButton("Avbryt");
@@ -65,22 +66,22 @@ public class inloggUI implements ActionListener{
 		label.setBounds(120, 11, 104, 95);
 		frame.getContentPane().add(label);
 		
-		textField = new JTextField();
-		textField.setBounds(73, 136, 209, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		tfUsername = new JTextField();
+		tfUsername.setBounds(73, 136, 209, 20);
+		frame.getContentPane().add(tfUsername);
+//		tfUsername.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(73, 182, 209, 20);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblAnvndarnamn = new JLabel("Anv�ndarnamn");
+		JLabel lblAnvndarnamn = new JLabel("Användarnamn");
 		lblAnvndarnamn.setBounds(73, 122, 113, 14);
 		frame.getContentPane().add(lblAnvndarnamn);
 		
-		JLabel lblLsenord = new JLabel("L�senord");
-		lblLsenord.setBounds(73, 167, 46, 14);
+		JLabel lblLsenord = new JLabel("Lösenord");
+		lblLsenord.setBounds(73, 167, 113, 14);
 		frame.getContentPane().add(lblLsenord);
 		
 		btnLoggaIn.setBounds(120, 213, 113, 23);
@@ -105,18 +106,24 @@ public class inloggUI implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnLoggaIn) {
-			System.out.println("inloggad");
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						frame.setVisible(false);
-						UIclient window2 = new UIclient();
-						window2.frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+//			try {
+//				String st=tfUsername.getText();
+//				System.out.println("inloggad");
+//				EventQueue.invokeLater(new Runnable() {
+//				public void run() {
+//					try {
+//						frame.setVisible(false);
+//						UIclient window2 = new UIclient();
+//						window2.frame.setVisible(true);
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			});
+//			}catch(NullPointerException e1) {
+//				JOptionPane.showMessageDialog(null, "Du måste skriva in ett användarnamn");
+//			}
+			
 		} else if (e.getSource() == btnAvbryt) {
 			System.exit(0);
 		}
