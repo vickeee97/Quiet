@@ -13,12 +13,14 @@ import java.awt.*;
 public class UIclient extends JPanel implements ActionListener {
 
 	private Client client;
+	private inloggUI inlogg;
 	JFrame frame;
 	private AbstractButton textArea;
 	private JTextArea textArea_2;
 	private DefaultListModel<String> LMMessageList2;
 	private JButton btnNewButton_1 = new JButton("Encrypt and send");
 	private DefaultListModel LMKontaktList;
+	private String username;
 	
 
 	/**
@@ -27,13 +29,16 @@ public class UIclient extends JPanel implements ActionListener {
 	
 	public void sendClient(Client client) {
 		this.client = client;
+		
 	}
 
 	/**
 	 * Create the application.
 	 */
 	public UIclient() {
-		initialize();
+	   	
+	    initialize();
+		
 	}
 
 	/**
@@ -59,7 +64,7 @@ public class UIclient extends JPanel implements ActionListener {
 		frame.getContentPane().add(list);
 
 
-		JLabel lblNamn = new JLabel("Viktor");
+		JLabel lblNamn = new JLabel(username);
 		lblNamn.setBounds(120, 37, 46, 14);
 		frame.getContentPane().add(lblNamn);
 
@@ -107,5 +112,9 @@ public class UIclient extends JPanel implements ActionListener {
 			}
 			textArea_2.setText("");
 		}}
+		
+		public void setUsername () {
+			this.username = inlogg.getUsername();
+			}
 	}
 

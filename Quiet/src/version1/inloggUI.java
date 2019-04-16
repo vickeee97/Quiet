@@ -93,9 +93,9 @@ public class inloggUI implements ActionListener{
 		btnAvbryt.addActionListener(this);
 	}
 
-	public Object getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getUsername() {
+		username =  tfUsername.getText();
+		return username;
 	}
 
 	public Object getPassword() {
