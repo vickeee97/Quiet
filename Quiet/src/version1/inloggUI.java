@@ -132,7 +132,23 @@ public class inloggUI implements ActionListener{
 		}
 		
 		else if (e.getSource() == btnRegistrera) {
-			client.setUser(tfUsername.getText());
+			if(tfUsername.getText().length()==0) {
+				JOptionPane.showMessageDialog(null, "Du måste skriva in ett användarnamn");
+			}else {
+				client.setUser(tfUsername.getText());
+				EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						frame.setVisible(false);
+						UIclient window2 = new UIclient();
+						window2.frame.setVisible(true);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				});
+			}
+		
 		}
 	}
 }
