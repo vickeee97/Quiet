@@ -19,10 +19,12 @@ import javax.swing.JButton;
  */
 public class inloggUI implements ActionListener{
 
+	private Client client;
 	JFrame frame;
 	private JTextField tfUsername;
 	private JTextField textField_1;
 	private JButton btnLoggaIn = new JButton("Logga in");
+	private JButton btnRegistrera = new JButton("Registrera");
     private JButton btnAvbryt = new JButton("Avbryt");
     private String username;
 	private String password;
@@ -84,6 +86,10 @@ public class inloggUI implements ActionListener{
 		lblLsenord.setBounds(73, 167, 113, 14);
 		frame.getContentPane().add(lblLsenord);
 		
+		btnRegistrera.setBounds(120, 240, 113, 23);
+		frame.getContentPane().add(btnRegistrera);
+		btnRegistrera.addActionListener(this);
+		
 		btnLoggaIn.setBounds(120, 213, 113, 23);
 		frame.getContentPane().add(btnLoggaIn);
 		btnLoggaIn.addActionListener(this);
@@ -123,6 +129,10 @@ public class inloggUI implements ActionListener{
 		}
 		} else if (e.getSource() == btnAvbryt) {
 			System.exit(0);
+		}
+		
+		else if (e.getSource() == btnRegistrera) {
+			client.setUser(tfUsername.getText());
 		}
 	}
 }

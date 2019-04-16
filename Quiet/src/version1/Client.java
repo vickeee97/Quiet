@@ -1,4 +1,5 @@
 package version1;
+
 import java.awt.Component;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -15,34 +16,36 @@ import javax.swing.SwingUtilities;
 
 /**
  * En klass som hanterar det som skickas frï¿½n klienten.
+ * 
  * @author Viktor
  *
  */
-public class Client extends Thread{
+public class Client extends Thread {
 	private User user;
-	
+
 	private Socket socket;
 	private LinkedList<Message> recievedMessages = new LinkedList<Message>();
-	private LinkedList<User> onlineUsers = new LinkedList<User>(); //borde ändras till bara users kanske om det inte ska vara så att dem bara visas om dem är online
+	private LinkedList<User> users = new LinkedList<User>(); // borde ändras till bara users kanske om det inte ska vara
+																// så att dem bara visas om dem är online
 	private String ip;
 	private int port;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 	private UIclient ui;
 	private inloggUI inloggUI;
-	
-	private Client (String ip, int port, UIclient ui) {
+
+	private Client(String ip, int port, UIclient ui) {
 		this.ip = ip;
 		this.port = port;
 		this.ui = ui;
 		ui.sendClient(this);
 	}
-	
-	public void run(){
+
+	public void run() {
 		try {
-			while(true) {
+			while (true) {
 				Object o = ois.readObject();
-				if(o instanceof Message) {
+				if (o instanceof Message) {
 					Message message = (Message) o;
 				}
 			}
@@ -50,22 +53,21 @@ public class Client extends Thread{
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public void connect(){
-		try{
-			socket = new Socket(ip,port);
+
+	public void connect() {
+		try {
+			socket = new Socket(ip, port);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-		} catch(IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public User getUser(){
+
+	public User getUser() {
 		return user;
 	}
-	
+
 	public void sendUser(User user) {
 		try {
 			oos.writeObject(user);
@@ -74,8 +76,8 @@ public class Client extends Thread{
 			e.printStackTrace();
 		}
 	}
-	
-	public synchronized void sendMessage(String message, User sender){
+
+	public synchronized void sendMessage(String message, User sender) {
 		Message msg = new Message(message, sender);
 		try {
 			oos.writeObject(msg);
@@ -84,45 +86,53 @@ public class Client extends Thread{
 			e.printStackTrace();
 		}
 	}
-	
-	//metod som läser av files/users, skapar User objekt med användarnamnen och lägger dem i LinkedListen onlineUsers -> denna ska sen upp i UIt
-	public void getUsers () {
-		try { BufferedReader br = new BufferedReader (new FileReader("files/users"));
-		User temp;
-		String name;
-		    while ((name = br.readLine()) != null) {
-		    	temp = new User (name);
-		    	onlineUsers.add(temp);
-		    	if (onlineUsers.isEmpty() == true) {
-		    		JOptionPane.showMessageDialog(null, "Listan är tom felmeddelande temp", "fel", 0); 
-		    	}
-		    }
-			
+
+	// metod som läser av files/users, skapar User objekt med användarnamnen och
+	// lägger dem i LinkedListen onlineUsers -> denna ska sen upp i UIt
+	public void getUsers() {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("files/users"));
+			User temp;
+			String name;
+			while ((name = br.readLine()) != null) {
+				temp = new User(name);
+				users.add(temp);
+				if (users.isEmpty() == true) {
+					JOptionPane.showMessageDialog(null, "Listan är tom felmeddelande temp", "fel", 0);
+				}
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 		}
 	}
-	
-	public static void main(String arg[]) throws IOException{
+
+	public void setUser(String userName) {
+		User user = new User(userName);
+		this.user = user;
+		users.add(user);
+	}
+
+	public static void main(String arg[]) throws IOException {
 		SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-			try {
-				inloggUI window = new inloggUI();
-				window.frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
+			public void run() {
+				try {
+					inloggUI window = new inloggUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-		}
 		});
-		
+
 //		String str = "hej";
-		
+
 //		try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()))) {
 //			oos.writeObject(str);
 //			oos.flush();
 //			oos.close();
 //		} catch (IOException e) {}
-				
+
 	}
 }
