@@ -64,7 +64,7 @@ public class UIclient extends JPanel implements ActionListener {
 		frame.getContentPane().add(list);
 
 
-		JLabel lblNamn = new JLabel(username);
+		JLabel lblNamn = new JLabel("username");
 		lblNamn.setBounds(120, 37, 46, 14);
 		frame.getContentPane().add(lblNamn);
 
