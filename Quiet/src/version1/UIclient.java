@@ -18,6 +18,7 @@ public class UIclient extends JPanel implements ActionListener {
 	private JTextArea textArea_2;
 	private DefaultListModel<String> LMMessageList2;
 	private JButton btnNewButton_1 = new JButton("Encrypt and send");
+	private DefaultListModel LMKontaktList;
 	
 
 	/**
@@ -62,7 +63,7 @@ public class UIclient extends JPanel implements ActionListener {
 		lblNamn.setBounds(120, 37, 46, 14);
 		frame.getContentPane().add(lblNamn);
 
-		DefaultListModel LMKontaktList = new DefaultListModel();
+		LMKontaktList = new DefaultListModel();
 		JList kontaktList = new JList(LMKontaktList);
 		JScrollPane jspKontaktList = new JScrollPane(kontaktList);
 		JScrollBar KontaktScrollBar = jspKontaktList.getVerticalScrollBar();
@@ -92,6 +93,9 @@ public class UIclient extends JPanel implements ActionListener {
 		frame.getContentPane().add(scrollMessageList2);
 		scrollMessageList2.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
+	}
+	public void addUsertoList(Client client) {
+		LMKontaktList.addElement(client.getName());
 	}
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == btnNewButton_1) {

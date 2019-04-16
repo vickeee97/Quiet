@@ -5,9 +5,6 @@ import java.awt.EventQueue;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -98,7 +95,7 @@ public class inloggUI implements ActionListener{
 
 	public Object getUsername() {
 		// TODO Auto-generated method stub
-		return username;
+		return null;
 	}
 
 	public Object getPassword() {
@@ -112,8 +109,6 @@ public class inloggUI implements ActionListener{
 			if(tfUsername.getText().length()==0) {
 			JOptionPane.showMessageDialog(null, "Du måste skriva in ett användarnamn");
 			}else {
-				username = tfUsername.getText();
-				writeUser();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
@@ -124,30 +119,10 @@ public class inloggUI implements ActionListener{
 							e.printStackTrace();
 						}
 					}
-				});
-			}
-		}else if (e.getSource() == btnAvbryt) {
+			});
+		}
+		} else if (e.getSource() == btnAvbryt) {
 			System.exit(0);
 		}
 	}
-	
-	public void writeUser () {
-		OutputStream os = null;
-		try { 
-			os = new FileOutputStream("files/users.txt");
-			os.write(username.getBytes(), username.length(), 0);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				os.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-	}
-	
-	
 }
