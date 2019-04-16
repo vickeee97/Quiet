@@ -3,7 +3,9 @@ package version1;
 import java.awt.Component;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -34,11 +36,13 @@ public class Client extends Thread {
 	private UIclient ui;
 	private inloggUI inloggUI;
 
-	private Client(String ip, int port, UIclient ui) {
+	private Client(String ip, int port, UIclient ui, inloggUI inloggUI) {
 		this.ip = ip;
 		this.port = port;
 		this.ui = ui;
+		this.inloggUI = inloggUI;
 		ui.sendClient(this);
+		inloggUI.sendClient(this);
 	}
 
 	public void run() {
@@ -89,7 +93,7 @@ public class Client extends Thread {
 
 	// metod som läser av files/users, skapar User objekt med användarnamnen och
 	// lägger dem i LinkedListen onlineUsers -> denna ska sen upp i UIt
-	public void getUsers() {
+	public void getUsers(String userName) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("files/users"));
 			User temp;
@@ -97,9 +101,6 @@ public class Client extends Thread {
 			while ((name = br.readLine()) != null) {
 				temp = new User(name);
 				users.add(temp);
-				if (users.isEmpty() == true) {
-					JOptionPane.showMessageDialog(null, "Listan är tom felmeddelande temp", "fel", 0);
-				}
 			}
 
 		} catch (Exception e) {
@@ -107,10 +108,18 @@ public class Client extends Thread {
 
 		}
 	}
+	
+	public void createUsers(String userName) {
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter("files/users"));
+			bw.write(userName);
+			User user = new User(userName);
+			users.add(user);
+		} catch (IOException e) {}
+	}
 
 	public void setUser(String userName) {
-		User user = new User(userName);
-		this.user = user;
+		this.user = new User(userName);
 		users.add(user);
 	}
 

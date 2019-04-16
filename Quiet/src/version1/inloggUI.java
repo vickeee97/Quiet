@@ -33,22 +33,29 @@ public class inloggUI implements ActionListener{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					inloggUI window = new inloggUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					inloggUI window = new inloggUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
+	
+	public void sendClient(Client client) {
+		this.client = client;
+		
+	}
+	
+	
 	public inloggUI() {
 		initialize();
 	}
@@ -135,7 +142,9 @@ public class inloggUI implements ActionListener{
 			if(tfUsername.getText().length()==0) {
 				JOptionPane.showMessageDialog(null, "Du måste skriva in ett användarnamn");
 			}else {
-				client.setUser(tfUsername.getText());
+				client.createUsers("hej");
+//				client.createUsers(tfUsername.getText());
+//				System.out.println(tfUsername.getText());
 				EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
