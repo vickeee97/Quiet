@@ -1,5 +1,6 @@
 package version2;
 
+
 import java.util.LinkedList;
 import javax.swing.JFrame;
 

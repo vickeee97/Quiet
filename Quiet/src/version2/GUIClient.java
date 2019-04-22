@@ -82,8 +82,13 @@ public class GUIClient extends JPanel implements ActionListener {
 	    btnDecryptnSend.addActionListener(this);
 	}
 	public void setUserList(LinkedList<User> userList) {
+		if (LMKontactList.getSize() > 0) {
+			LMKontactList.removeAllElements();
+		}
+		String temp;
 		for(User elem: userList) {
-			LMKontactList.addElement(elem.getName());
+			temp=elem.getName();
+			LMKontactList.addElement(temp);
 		}
 	}
 	public void setController(ClientController controller) {
