@@ -27,8 +27,8 @@ public class Client extends Thread {
 
 	private Socket socket;
 	private LinkedList<Message> recievedMessages = new LinkedList<Message>();
-	private LinkedList<User> users = new LinkedList<User>(); // borde ändras till bara users kanske om det inte ska vara
-																// så att dem bara visas om dem är online
+	private LinkedList<User> users = new LinkedList<User>(); // borde ï¿½ndras till bara users kanske om det inte ska vara
+																// sï¿½ att dem bara visas om dem ï¿½r online
 	private String ip;
 	private int port;
 	private ObjectInputStream ois;
@@ -91,8 +91,8 @@ public class Client extends Thread {
 		}
 	}
 
-	// metod som läser av files/users, skapar User objekt med användarnamnen och
-	// lägger dem i LinkedListen onlineUsers -> denna ska sen upp i UIt
+	// metod som lï¿½ser av files/users, skapar User objekt med anvï¿½ndarnamnen och
+	// lï¿½gger dem i LinkedListen onlineUsers -> denna ska sen upp i UIt
 	public void getUsers(String userName) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("files/users"));
