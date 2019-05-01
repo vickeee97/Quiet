@@ -35,6 +35,7 @@ public class Client extends Thread {
 				}else if(o instanceof LinkedList) {
 					LinkedList<User> userList=(LinkedList<User>)o;
 					controller.setUserList(userList);
+					users=userList;
 				}else if(o instanceof Message) {
 					System.out.println("10");
 					Message m=(Message)o;

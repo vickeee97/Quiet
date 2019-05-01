@@ -1,6 +1,7 @@
 package version4;
 
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JFrame;
 
 
@@ -34,17 +35,19 @@ public class ClientController {
 		uiC.setTextArea(s);
 	}
 	public void sendMessage() {
-		System.out.println("1");
+		
 		LinkedList<User> users=client.getUserList();
-		System.out.println("2");
 		LinkedList<User> selectedUsers=new LinkedList<User>();
-		System.out.println("3");
-		int[] selectedU=uiC.getSelectedUsers();
-		System.out.println("4");
-		for(int i=0; i<selectedU.length-1; i++) {
-			selectedUsers.add(users.get(selectedU[i]));
-			System.out.println(users.get(selectedU[i]));
+		List<String> selectedU=uiC.getSelectedUsers();
+		
+		for(int i=0; i<selectedU.size(); i++) {
+			for(int j=0; j<users.size(); j++) {
+				if(selectedU.get(i)==users.get(j).getName()) {
+					selectedUsers.add(users.get(j));
+				}
+			}
 		}
+		
 		Message message= new Message(uiC.getMessage(), client.getUser(), selectedUsers);
 		client.sendMessage(message);
 	}

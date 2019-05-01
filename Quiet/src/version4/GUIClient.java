@@ -7,7 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
-
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -94,9 +94,9 @@ public class GUIClient extends JPanel implements ActionListener {
 			LMKontactList.addElement(temp);
 		}
 	}
-	public int[] getSelectedUsers() {
-		int[] selectedUsers=kontactList.getSelectedIndices();
-		return selectedUsers;
+	public List<String> getSelectedUsers() {
+		List<String> list=kontactList.getSelectedValuesList();
+		return list;
 	}
 	public String getMessage() {
 		return taMessage.getText();
