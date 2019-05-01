@@ -30,6 +30,9 @@ public class ClientController {
 	public GUIClient getClient() {
 		return uiC;
 	}
+	public String getClientName() {
+		return client.getUserName();
+	}
 	public void setTextArea(String s) {
 		System.out.println("11");
 		uiC.setTextArea(s);

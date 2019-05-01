@@ -63,7 +63,9 @@ public class Client extends Thread {
 	public User getUser() {
 		return user;
 	}
-	
+	public String getUserName() {
+		return user.getName();
+	}
 	public synchronized void sendMessage(Message message) {
 		System.out.println("5");
 		try {
