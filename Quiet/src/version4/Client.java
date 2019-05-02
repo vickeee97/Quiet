@@ -67,12 +67,9 @@ public class Client extends Thread {
 		return user.getName();
 	}
 	public synchronized void sendMessage(Message message) {
-		System.out.println("5");
 		try {
 			oos.writeObject(message);
-			System.out.println("6");
 			oos.flush();
-			System.out.println("7");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

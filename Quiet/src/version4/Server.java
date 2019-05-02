@@ -71,7 +71,6 @@ public class Server extends Thread {
 						user = (User) o;
 						sendUserListToAll();
 					}else if(o instanceof Message) {
-						System.out.println("8");
 						Message message = (Message)o;
 						sendMessage(message);
 					}
@@ -85,19 +84,13 @@ public class Server extends Thread {
 		}
 	}
 	public synchronized void sendMessage(Message message) {
-		System.out.println("9");
-		System.out.println("kajsa");
 		LinkedList<User> receiverList = message.getReceivers();
 		for (ClientHandler handler : handlerList) {
-			System.out.println("kjhf");
 			for (int i=0; i<receiverList.size(); i++) {
-				System.out.println("hf");
 				if (handler.getUser().getName().equals(receiverList.get(i).getName())) {
 					try {
 						handler.getOutputStream().writeObject(message);
-						System.out.println("h");
 						handler.getOutputStream().flush();
-						System.out.println("e");
 						receiverList.remove(i);
 					}catch(IOException e){
 						e.printStackTrace();

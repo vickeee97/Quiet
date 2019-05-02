@@ -102,7 +102,6 @@ public class GUIClient extends JPanel implements ActionListener {
 		return taMessage.getText();
 	}
 	public void setTextArea(String s) {
-		System.out.println("12");
 		LMMessageList.addElement(s);
 	}
 	

@@ -34,7 +34,6 @@ public class ClientController {
 		return client.getUserName();
 	}
 	public void setTextArea(String s) {
-		System.out.println("11");
 		uiC.setTextArea(s);
 	}
 	public void sendMessage() {
