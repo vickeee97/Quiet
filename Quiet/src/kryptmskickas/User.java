@@ -43,11 +43,13 @@ public class User implements Serializable{
 		return publicKey;
 	}
 	
-	public byte[] decrypt(byte[] encrypted, PrivateKey privateKey) throws Exception {
+	public byte[] decrypt(byte[] encrypted) throws Exception {
+		byte[] klar= new byte[128];
 	    Cipher cipher = Cipher.getInstance("RSA");
 	    cipher.init(Cipher.DECRYPT_MODE, privateKey);
+	    klar=cipher.doFinal(encrypted);
 
-	    return cipher.doFinal(encrypted);
+	    return klar;
 	}
 	
 //	public byte[] encrypt(String message, PublicKey publicKey) throws Exception {

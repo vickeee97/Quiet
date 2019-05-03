@@ -12,6 +12,7 @@ public class ClientController {
 	private Client client;
 	private GUIInlog uiI;
 	private GUIClient uiC;
+	private LinkedList<Message> messages= new LinkedList<Message>();
 	
 	public ClientController(Client client, GUIInlog uiI, GUIClient uiC) {
 		this.client=client;
@@ -36,8 +37,9 @@ public class ClientController {
 	public String getClientName() {
 		return client.getUserName();
 	}
-	public void setTextArea(String s, User sender) {
-		uiC.setTextArea(s, sender);
+	public void setTextArea(Message message) {
+		uiC.setTextArea(message.getText());
+		messages.add(message);
 	}
 	public void sendMessage(List<String> selectedUsers, String m) {
 		
@@ -56,7 +58,6 @@ public class ClientController {
 			byte [] encryptedMessage= null;
 			try {
 			encryptedMessage=encrypt(m, selectedU.get(k).getPublicKey());
-			System.out.println(m);
 			} catch (Exception e) {
 			e.printStackTrace();
 			}
@@ -72,6 +73,31 @@ public class ClientController {
 	    cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
 	    return cipher.doFinal(message.getBytes());
+	}
+	public void decryptMessage(List<String> selectedMessages) {
+		LinkedList<Message> selectedM = new LinkedList<Message>();
+		
+		for(Message message: messages) {
+			for(String selected: selectedMessages) {
+				if(message.getText()==selected) {
+					selectedM.add(message);
+				}
+			}
+		}
+		for(Message selectedmessage: selectedM) {
+			
+			String decryptedMessage=client.decrypt(fromHexString(selectedmessage.getText()));
+			uiC.setTextArea(decryptedMessage);
+		}
+	}
+	public byte[] fromHexString(String s) {
+	    int len = s.length();
+	    byte[] data = new byte[len / 2];
+	    for (int i = 0; i < len-1; i += 2) {
+	        data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+	                             + Character.digit(s.charAt(i+1), 16));
+	    }
+	    return data;
 	}
 	
 	

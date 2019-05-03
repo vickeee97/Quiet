@@ -35,7 +35,7 @@ public class Client extends Thread {
 					users=userList;
 				}else if(o instanceof Message) {
 					Message m=(Message)o;
-					controller.setTextArea(m.getText(), m.getSender());
+					controller.setTextArea(m);
 				}
 			}
 		} catch(Exception e) {
@@ -81,5 +81,14 @@ public class Client extends Thread {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+	}
+	public String decrypt(byte[] encryptedMessage) {
+		byte[] decryptedMessage= null;
+		try {
+			decryptedMessage =user.decrypt(encryptedMessage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return decryptedMessage.toString();
 	}
 }

@@ -29,8 +29,8 @@ public class GUIClient extends JPanel implements ActionListener {
 	private JPanel pnlCenterSouth= new JPanel(new BorderLayout());
 	private JPanel pnlCenterS= new JPanel(new GridLayout(2,1));
 	private JTextArea taMessage= new JTextArea();
-	private JButton btnDecryptnSend = new JButton("Encrypt and send");
-	private JButton btnEncrypt = new JButton("Decrypt");
+	private JButton btnEncryptnSend = new JButton("Encrypt and send");
+	private JButton btnDecrypt = new JButton("Decrypt");
 	
 	private DefaultListModel<String> LMKontactList= new DefaultListModel<String>();
 	private JList<String> kontactList = new JList<String>(LMKontactList);
@@ -65,8 +65,8 @@ public class GUIClient extends JPanel implements ActionListener {
 		pnlWest.add(jspKontaktList);
 	   
 	  
-	    pnlCenterS.add(btnEncrypt);
-	    pnlCenterS.add(btnDecryptnSend);
+	    pnlCenterS.add(btnDecrypt);
+	    pnlCenterS.add(btnEncryptnSend);
 	    
 	    pnlCenterSouth.add(pnlCenterS, BorderLayout.EAST);
 	    pnlCenterSouth.add(taMessage, BorderLayout.CENTER);
@@ -81,8 +81,8 @@ public class GUIClient extends JPanel implements ActionListener {
 	    
 	    taMessage.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		
-	    btnEncrypt.addActionListener(this);
-	    btnDecryptnSend.addActionListener(this);
+	    btnDecrypt.addActionListener(this);
+	    btnEncryptnSend.addActionListener(this);
 	}
 	public void setUserList(LinkedList<User> userList) {
 		if (LMKontactList.getSize() > 0) {
@@ -94,8 +94,9 @@ public class GUIClient extends JPanel implements ActionListener {
 			LMKontactList.addElement(temp);
 		}
 	}
-	public void setTextArea(String s, User sender) {
-		LMMessageList.addElement(sender.getName() + ": " + s);
+	public void setTextArea(String s) {
+		LMMessageList.addElement(s);
+		
 	}
 	
 	public void setController(ClientController controller) {
@@ -103,10 +104,13 @@ public class GUIClient extends JPanel implements ActionListener {
     }
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==btnDecryptnSend) {
+		if(e.getSource()==btnEncryptnSend) {
 			List<String> selectedUsers =kontactList.getSelectedValuesList();
 			controller.sendMessage(selectedUsers, taMessage.getText());
 			taMessage.setText("");
+		}else if(e.getSource()==btnDecrypt) {
+			List<String> selectedMessages =messageList.getSelectedValuesList();
+			controller.decryptMessage(selectedMessages);
 		}
 	}
 
