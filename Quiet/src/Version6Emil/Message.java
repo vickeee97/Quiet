@@ -13,20 +13,24 @@ public class Message implements Serializable{
 		this.sender=sender;
 		this.receivers=receivers;
 	}
+	
 	public String getText() {
 		return this.text;
 	}
+	
 	public void setText(String txt) {
 		this.text = txt;
 	}
+	
 	public User getSender() {
 		return sender;
 	}
+	
 	public void setReceiver(LinkedList<User> receivers) {
 		this.receivers = receivers;
 	}
+	
 	public LinkedList<User> getReceivers() {
 		return receivers;
 	}
-
 }
