@@ -17,28 +17,27 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class GUIInlog extends JPanel implements ActionListener {
-	
+
 	private JTextField tfUsername= new JTextField();
 	private JTextField tfPassword= new JTextField();
 	private JLabel lblUsername = new JLabel("Användarnamn");
 	private JLabel lblPassword = new JLabel("Lösenord");
 	private JButton btnLogin = new JButton("Logga in");
 	private JButton btnRegister = new JButton("Registrera");
-    private JButton btnExit = new JButton("Avbryt");
-    private JPanel pnl=new JPanel(new BorderLayout());
-    private JPanel pnlCenter= new JPanel(new GridLayout(7,1));
-    private ImageIcon img = new ImageIcon(this.getClass().getResource("/quiet.png"));
+	private JButton btnExit = new JButton("Avbryt");
+	private JPanel pnl=new JPanel(new BorderLayout());
+	private JPanel pnlCenter= new JPanel(new GridLayout(7,1));
+	private ImageIcon img = new ImageIcon(this.getClass().getResource("/quiet.png"));
 	private JLabel lblBild = new JLabel(img);
 	private ClientController controller;
-	
+
 	public GUIInlog() {
-		
 		add(pnl, BorderLayout.CENTER);
-		
+
 		/**
 		 * === PNLCENTER ===
 		 */
-		
+
 		pnlCenter.setBackground(Color.WHITE);
 		pnlCenter.add(lblUsername);
 		pnlCenter.add(tfUsername);
@@ -47,16 +46,16 @@ public class GUIInlog extends JPanel implements ActionListener {
 		pnlCenter.add(btnLogin);
 		pnlCenter.add(btnRegister);
 		pnlCenter.add(btnExit);
-		
+
 		/**
 		 * === PNL ===
 		 */
-		
+
 		pnl.setBackground(Color.WHITE);
 		pnl.setPreferredSize(new Dimension(350,450));
 		pnl.add(lblBild, BorderLayout.NORTH);
 		pnl.add(pnlCenter, BorderLayout.CENTER);
-		
+
 		/**
 		 * === ActionListeners ===
 		 */
@@ -65,9 +64,10 @@ public class GUIInlog extends JPanel implements ActionListener {
 		btnRegister.addActionListener(this);
 		btnExit.addActionListener(this);
 	}
+
 	public void setController(ClientController controller) {
-    	this.controller=controller;
-    }
+		this.controller=controller;
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnLogin) {
@@ -75,9 +75,9 @@ public class GUIInlog extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Det valda användarnamnet är för kort. Försök igen.");
 			}else {
 				controller.createUser(tfUsername.getText());
-				
+
 			}
-			
+
 		}else if(e.getSource()==btnRegister) {
 			if (tfUsername.getText().length() == 0) {
 				JOptionPane.showMessageDialog(null, "Det valda användarnamnet är för kort. Försök igen.");
