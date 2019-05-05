@@ -20,6 +20,7 @@ public class Server extends Thread {
 		}
 		start();
 	}
+	
 	public void run() {
 		while (true) {
 			try {
@@ -31,6 +32,7 @@ public class Server extends Thread {
 			}
 		}
 	}
+	
 	public void sendUserListToAll() {
 		LinkedList<User> users = new LinkedList<User>();
 		for(ClientHandler elem : handlerList) {
@@ -47,7 +49,6 @@ public class Server extends Thread {
 	}
 	
 	private class ClientHandler extends Thread {
-		
 		private Socket socket;
 		private ObjectOutputStream oos;
 		private ObjectInputStream ois;
@@ -61,6 +62,7 @@ public class Server extends Thread {
 		public User getUser() {
 			return user;
 		}
+		
 		public void run() {
 			try {
 				oos = new ObjectOutputStream(socket.getOutputStream());
@@ -84,6 +86,7 @@ public class Server extends Thread {
 			return oos;
 		}
 	}
+	
 	public synchronized void sendMessage(Message message) {
 		System.out.println("9");
 		System.out.println("kajsa");
