@@ -25,24 +25,29 @@ public class ClientController {
 		uiI.setController(this);
 		uiC.setController(this);
 	}
+	
 	public void createUser(String userName) {
 		client.createUser(userName);
 	}
+	
 	public LinkedList<User> getUserList() {
 		return client.getUserList();
 	}
+	
 	public void setUserList(LinkedList<User> userList) {
 		uiC.setUserList(userList);
 	}
+	
 	public GUIClient getClient() {
 		return uiC;
 	}
+	
 	public void setTextArea(String s) {
 		System.out.println("11");
 		uiC.setTextArea(s);
 	}
-	public void sendMessage() throws Exception {
-		
+	
+	public void sendMessage() throws Exception {	
 		LinkedList<User> users=client.getUserList();
 		LinkedList<User> selectedUsers=new LinkedList<User>();
 		List<String> selectedU=uiC.getSelectedUsers();
@@ -54,19 +59,15 @@ public class ClientController {
 				}
 			}
 		}
-		
 		Message message= new Message(uiC.getMessage(), client.getUser(), selectedUsers);
 		client.sendMessage(message);
 	}
 	
 	public void getKeys() {
 		try {
-			
 			pair = rsa.generateKeyPair();
 			setKeys(pair);
-			
 		} catch (Exception e) {
-			
 			e.printStackTrace();
 		}
 	}
@@ -95,8 +96,5 @@ public class ClientController {
 	
 	public String getDecrypted () {
 		return client.getDecrypted();
-		}
-
-	
-	
+		}	
 }
