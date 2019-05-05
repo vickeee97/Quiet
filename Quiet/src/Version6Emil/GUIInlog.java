@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -14,12 +15,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class GUIInlog extends JPanel implements ActionListener {
 
 	private JTextField tfUsername= new JTextField();
-	private JTextField tfPassword= new JTextField();
+	private JPasswordField tfPassword= new JPasswordField();
 	private JLabel lblUsername = new JLabel("Användarnamn");
 	private JLabel lblPassword = new JLabel("Lösenord");
 	private JButton btnLogin = new JButton("Logga in");
@@ -63,6 +65,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 		btnLogin.addActionListener(this);
 		btnRegister.addActionListener(this);
 		btnExit.addActionListener(this);
+		
 	}
 
 	public void setController(ClientController controller) {
