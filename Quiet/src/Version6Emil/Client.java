@@ -58,14 +58,15 @@ public class Client extends Thread {
 			socket = new Socket(ip, port);
 			oos = new ObjectOutputStream((socket.getOutputStream()));
 			ois = new ObjectInputStream((socket.getInputStream()));
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
 	public LinkedList<User> getUserList() {
 		return users;
 	}
+	
 	public User getUser() {
 		return user;
 	}
@@ -104,12 +105,10 @@ public class Client extends Thread {
 				e.printStackTrace();
 			}
 	}
-	
 
 	public void setKeysClient(PublicKey publicKey, PrivateKey privateKey) {
 		this.publicKey = publicKey;
-		this.privateKey = privateKey;
-		
+		this.privateKey = privateKey;	
 	}
 	
 	public PublicKey getPublicKey () {
@@ -132,6 +131,4 @@ public class Client extends Thread {
 	public String getDecrypted () {
 		return avKrypterat;
 	}
-	
-	
 }
