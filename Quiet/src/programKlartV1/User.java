@@ -11,7 +11,7 @@ import java.util.Base64;
 
 import javax.crypto.Cipher;
 /**
- * Klass som hanterar ramverket fÃ¶r en User
+ * Klass som hanterar ramverket för en User
  * @author Viktor
  *
  */
@@ -19,7 +19,10 @@ public class User implements Serializable{
 	private String userName;
 	private PublicKey publicKey;
 	private PrivateKey privateKey;
-	
+	/**
+	 * Konstruktor som skapar ett User objekt
+	 * @param userName
+	 */
 	public User(String userName){
 		this.userName = userName;
 		KeyPair keyPair = null;
@@ -31,19 +34,37 @@ public class User implements Serializable{
         publicKey = keyPair.getPublic();
         privateKey = keyPair.getPrivate();
 	}
+	/**
+	 * Metod som skapar keypair, en privat och en publik nyckel
+	 * @return returnerar keypair
+	 * @throws NoSuchAlgorithmException
+	 */
 	public KeyPair buildKeyPair() throws NoSuchAlgorithmException {
 	    int keySize = 1024;
 	    KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
 	    keyPairGenerator.initialize(keySize);
 	    return keyPairGenerator.genKeyPair();
 	}
+	/**
+	 * Metod som returnerar namnet på usern
+	 * @return userName
+	 */
 	public String getName(){
 		return userName;
 	}
+	/**
+	 * Metod som ger den publika nyckeln för usern
+	 * @return publicKey
+	 */
 	public PublicKey getPublicKey() {
 		return publicKey;
 	}
-	
+	/**
+	 * Metod som hanterar avkryptering av meddelande
+	 * @param encrypted, strängen man avkrypterar
+	 * @return returnerar byte[]
+	 * @throws Exception
+	 */
 	public String decrypt(String encrypted) throws Exception {
 		System.out.println("public key " + publicKey);
 		byte[] klar= Base64.getDecoder().decode(encrypted);
@@ -53,49 +74,4 @@ public class User implements Serializable{
 
 	    return new String(klar, "UTF-8");
 	}
-	
-//	public byte[] encrypt(String message, PublicKey publicKey) throws Exception {
-//	   
-//		Cipher cipher = Cipher.getInstance("RSA");
-//	    cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-//
-//	    return cipher.doFinal(message.getBytes());
-//	}
-	    
-//	public static byte[] decrypt(PublicKey publicKey, byte [] encrypted) throws Exception {
-//	    Cipher cipher = Cipher.getInstance("RSA");  
-//	    cipher.init(Cipher.DECRYPT_MODE, publicKey);
-//	        
-//	    return cipher.doFinal(encrypted);
-//	}
-//	public byte[] encrypt(String message) throws Exception {
-//	    Cipher cipher = Cipher.getInstance("RSA");  
-//	    cipher.init(Cipher.ENCRYPT_MODE, privateKey);  
-//
-//	    return cipher.doFinal(message.getBytes());  
-//	}
-//	public PrivateKey getPrivateKey() {
-//		return privateKey;
-//	}
-//	public static void main(String[] args) {
-//		User user= new User("Kajsa");
-//		System.out.println(user.getName());
-//		System.out.println("publika nyckeln: " + user.getPublicKey());
-//		System.out.println("privata nyckeln: " + user.getPrivateKey());
-//		
-//		byte[] signed = null;
-//		try {
-//			signed = encrypt("Dipak Ã¤r en bajskorv", getPublicKey());
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
-//		System.out.println("1: " + new String(signed));
-//		byte[] verified = null;
-//		try {
-//			verified = decrypt(signed, user.getPrivateKey());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}                                 
-//		System.out.println("2: " + new String(verified)); 
-//	}
 }

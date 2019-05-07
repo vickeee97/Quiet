@@ -1,7 +1,11 @@
 package programKlartV1;
 
 import javax.swing.JFrame;
-
+/**
+ * Klass som startar inlogUI och clientUI
+ * @author Viktor
+ *
+ */
 public class StartProgram {
 
 	public static void main(String[] args) {

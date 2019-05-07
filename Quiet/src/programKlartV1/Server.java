@@ -7,11 +7,18 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
-
+/**
+ * Klass som hanterar servern
+ * @author Viktor och Kajsa
+ *
+ */
 public class Server extends Thread {
 	private ServerSocket serverSocket;
 	private LinkedList<ClientHandler> handlerList = new LinkedList<ClientHandler>();
-	
+	/**
+	 * Konstruktor som startar run metoden
+	 * @param port
+	 */
 	public Server(int port) {
 		try {
 			serverSocket = new ServerSocket(port);
@@ -20,6 +27,9 @@ public class Server extends Thread {
 		}
 		start();
 	}
+	/**
+	 * Run metod som kopplar ihop sockets och skapar ny clienthandler och kör sedan run metoden i clientHandler klassen
+	 */
 	public void run() {
 		while (true) {
 			try {
@@ -31,6 +41,9 @@ public class Server extends Thread {
 			}
 		}
 	}
+	/**
+	 * Delar ut clientHandlers till users
+	 */
 	public void sendUserListToAll() {
 		LinkedList<User> users = new LinkedList<User>();
 		for(ClientHandler elem : handlerList) {
@@ -46,22 +59,35 @@ public class Server extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Klass som hanterar clientHandlers
+	 * @author Kajsa och Viktor
+	 *
+	 */
 	private class ClientHandler extends Thread {
 		
 		private Socket socket;
 		private ObjectOutputStream oos;
 		private ObjectInputStream ois;
 		private User user;
-		
+		/**
+		 * Konstruktor som lägger till handlers i handlerList
+		 * @param socket
+		 */
 		public ClientHandler(Socket socket) {
 			this.socket=socket;
 			handlerList.add(this);
 		}
-		
+		/**
+		 * Metod som returnerar user
+		 * @return user
+		 */
 		public User getUser() {
 			return user;
 		}
+		/**
+		 * Run metod som kopplar ihop strömmar och hanterar objekt som kommer in iform av users och messages
+		 */
 		public void run() {
 			try {
 				oos = new ObjectOutputStream(socket.getOutputStream());
@@ -85,10 +111,12 @@ public class Server extends Thread {
 			return oos;
 		}
 	}
+	/**
+	 * Metod som skickar meddelandet till recievern
+	 * @param message
+	 */
 	public synchronized void sendMessage(Message message) {
-//		LinkedList<User> receiverList = message.getReceivers();
 		for (ClientHandler handler : handlerList) {
-//			for (int i=0; i<receiverList.size(); i++) {
 				if (handler.getUser().getName().equals(message.getReciever().getName())) {
 					try {
 						handler.getOutputStream().writeObject(message);
@@ -99,10 +127,10 @@ public class Server extends Thread {
 				}
 			}
 		}
-		
-		
-//	}
-	
+	/**
+	 * Metod som startar servern
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new Server(6946);
 	}
