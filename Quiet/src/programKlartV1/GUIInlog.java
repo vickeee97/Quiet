@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 public class GUIInlog extends JPanel implements ActionListener {
 	
 	private JTextField tfUsername= new JTextField();
-	private JTextField tfPassword= new JTextField();
+//	private JTextField tfPassword= new JTextField();
 	private JLabel lblUsername = new JLabel("Användarnamn");
 //	private JLabel lblPassword = new JLabel("Lösenord");
 //	private JButton btnLogin = new JButton("Logga in");
@@ -43,7 +43,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 		pnlCenter.add(lblUsername);
 		pnlCenter.add(tfUsername);
 	//	pnlCenter.add(lblPassword);
-		pnlCenter.add(tfPassword);
+	//	pnlCenter.add(tfPassword);
 	//	pnlCenter.add(btnLogin);
 		pnlCenter.add(btnRegister);
 		pnlCenter.add(btnExit);
