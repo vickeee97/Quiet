@@ -23,7 +23,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 	private JLabel lblUsername = new JLabel("Username");
 //	private JLabel lblPassword = new JLabel("Lösenord");
 //	private JButton btnLogin = new JButton("Logga in");
-	private JButton btnRegister = new JButton("Go online");
+	private JButton btnRegister = new JButton("Go online!");
     private JButton btnExit = new JButton("Avbryt");
     private JPanel pnl=new JPanel(new BorderLayout());
     private JPanel pnlCenter= new JPanel(new GridLayout(7,1));
