@@ -21,6 +21,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
+/**
+ * 
+ * Method that creates the client UI, fills the list of connected clients also contains what happends when the two buttons "encrypt and send" and "decrypt" is pressed.
+ *
+ */
+
+/*
+ * All parts of client GUI is declared and created.
+ */
 public class GUIClient extends JPanel implements ActionListener {
 	private JPanel pnl = new JPanel(new BorderLayout());
 	private JPanel pnlWest = new JPanel(new GridLayout(2, 1));
@@ -42,6 +51,9 @@ public class GUIClient extends JPanel implements ActionListener {
 	private JLabel lblBild = new JLabel(img);
 	private ClientController controller;
 
+	/**
+	 * Constructor where the declared "parts" are added to the frame
+	 */
 	public GUIClient() {
 		JScrollBar kontaktScrollBar = jspKontaktList.getVerticalScrollBar();
 		JScrollBar messageScrollBar = scrollMessageList.getVerticalScrollBar();
@@ -78,11 +90,17 @@ public class GUIClient extends JPanel implements ActionListener {
 		messageList.setVisibleRowCount(-1);
 
 		taMessage.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-
+/*
+ * Adding actionListeners for the two buttons
+ */
 		btnDecrypt.addActionListener(this);
 		btnEncryptnSend.addActionListener(this);
 	}
 
+	/**
+	 * Method that clears the defaultListModel and then fills it with the LinkedList parameter
+	 * @param userList
+	 */
 	public void setUserList(LinkedList<User> userList) {
 		if (LMKontactList.getSize() > 0) {
 			LMKontactList.removeAllElements();
@@ -93,16 +111,31 @@ public class GUIClient extends JPanel implements ActionListener {
 			LMKontactList.addElement(temp);
 		}
 	}
-
+/**
+ * Method that sets the textArea to the string parameter by adding the string to LMMessageList
+ * @param s
+ */
 	public void setTextArea(String s) {
 		LMMessageList.addElement(s);
 
 	}
 
+	/**
+	 * 
+	 * @param controller
+	 */
 	public void setController(ClientController controller) {
 		this.controller = controller;
 	}
 
+	/**
+	 * Method that responds to the two actionListeners for the buttons in the GUI.
+	 * btnEncryptnSend sets list selectedUsers to the users that have been selected by the user in the GUI.
+	 * Calls sendMessage() with the selectedUsers(receivers user have selected) and the actual message text, then clears where the user writes text.
+	 * 
+	 * the selected messages that the user have received is decrypted by sending these messages as a parameter to the decrypyMessage() method in the controller class.
+	 */
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnEncryptnSend) {
 			List<String> selectedUsers = kontactList.getSelectedValuesList();
