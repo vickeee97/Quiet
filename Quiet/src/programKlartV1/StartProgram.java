@@ -7,7 +7,6 @@ import javax.swing.JFrame;
  *
  */
 public class StartProgram {
-
 	public static void main(String[] args) {
 		GUIInlog uiI = new GUIInlog();
 		GUIClient uiC = new GUIClient();

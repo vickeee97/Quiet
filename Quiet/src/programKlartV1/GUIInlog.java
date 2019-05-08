@@ -17,13 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class GUIInlog extends JPanel implements ActionListener {
-	
 	private JTextField tfUsername= new JTextField();
-//	private JTextField tfPassword= new JTextField();
 	private JLabel lblUsername = new JLabel("Username");
-//	private JLabel lblPassword = new JLabel("Lösenord");
-//	private JButton btnLogin = new JButton("Logga in");
-	private JButton btnRegister = new JButton("Go online!");
+	private JButton btnGoOnline = new JButton("Go online!");
     private JButton btnExit = new JButton("Avbryt");
     private JPanel pnl=new JPanel(new BorderLayout());
     private JPanel pnlCenter= new JPanel(new GridLayout(7,1));
@@ -42,10 +38,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 		pnlCenter.setBackground(Color.WHITE);
 		pnlCenter.add(lblUsername);
 		pnlCenter.add(tfUsername);
-	//	pnlCenter.add(lblPassword);
-	//	pnlCenter.add(tfPassword);
-	//	pnlCenter.add(btnLogin);
-		pnlCenter.add(btnRegister);
+		pnlCenter.add(btnGoOnline);
 		pnlCenter.add(btnExit);
 		
 		/**
@@ -61,8 +54,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 		 * === ActionListeners ===
 		 */
 
-	//	btnLogin.addActionListener(this);
-		btnRegister.addActionListener(this);
+		btnGoOnline.addActionListener(this);
 		btnExit.addActionListener(this);
 	}
 	public void setController(ClientController controller) {
@@ -70,26 +62,19 @@ public class GUIInlog extends JPanel implements ActionListener {
     }
 
 	public void actionPerformed(ActionEvent e) {
-//		if(e.getSource()==btnLogin) {
-//			if (tfUsername.getText().length() == 0) {
-//				JOptionPane.showMessageDialog(null, "Det valda användarnamnet är för kort. Försök igen.");
-//			}else {
-//				controller.createUser(tfUsername.getText());
-//				
-//			}
-			
-		 if(e.getSource()==btnRegister) {
+		 if(e.getSource()==btnGoOnline) {
 			 String name = tfUsername.getText();
-			 if (!(name.isEmpty()) && !(Character.isWhitespace(name.charAt(0)))) {
-				 JFrame frame = new JFrame("Quiet:" + tfUsername.getText());
+			 if (!(name.isEmpty()) && !name.contains(" ")) {
+				 JFrame frame = new JFrame("Quiet: " + tfUsername.getText());
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.add(this.controller.getClient());
 					frame.pack();
 					frame.setVisible(true);
 					frame.setResizable(false);
 					setVisible(false);
-					controller.createUser(tfUsername.getText());  } 
-				else { JOptionPane.showMessageDialog(null, "Username is not valid.", "fel", 0);
+					controller.createUser(tfUsername.getText());  
+			}else{ 
+				JOptionPane.showMessageDialog(null, "Username is not valid.", "fel", 0);
 				
 			}
 		}else if(e.getSource()==btnExit) {

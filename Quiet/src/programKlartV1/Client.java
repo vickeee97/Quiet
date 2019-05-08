@@ -7,7 +7,6 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 public class Client extends Thread {
-	
 	private String ip;
 	private int port;
 	private LinkedList<User> users = new LinkedList<User>();
@@ -33,7 +32,6 @@ public class Client extends Thread {
 					LinkedList<User> userList=(LinkedList<User>)o;
 					controller.setUserList(userList);
 					users=userList;
-					users.stream().forEach(user -> System.out.println(user.getName() + ": " + user.getPublicKey()));
 				}else if(o instanceof Message) {
 					Message m=(Message)o;
 					controller.setTextArea(m);

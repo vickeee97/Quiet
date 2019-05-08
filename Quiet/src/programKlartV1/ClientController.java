@@ -53,17 +53,13 @@ public class ClientController {
 				}
 			}
 		}
-//		selectedU.add(client.getUser());
 		for(int k=0; k<selectedU.size(); k++) {
 			String encryptedMessage= null;
 			try {
-			System.out.println("private " + selectedU.get(k).getPublicKey());
-			encryptedMessage=encrypt(m, selectedU.get(k).getPublicKey());
-			System.out.println("encrypted" + encryptedMessage);
-			} catch (Exception e) {
-			e.printStackTrace();
+				encryptedMessage=encrypt(m, selectedU.get(k).getPublicKey());
+			}catch (Exception e) {
+				e.printStackTrace();
 			}
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			Message message= new Message(encryptedMessage, client.getUser(), selectedU.get(k));
 			client.sendMessage(message);
 		}
@@ -71,10 +67,8 @@ public class ClientController {
 		
 	}
 	public String encrypt(String message, PublicKey publicKey) throws Exception {
-		   
 		Cipher cipher = Cipher.getInstance("RSA");
 	    cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-
 	    byte[] text = cipher.doFinal(message.getBytes("UTF-8"));
 	    return Base64.getEncoder().encodeToString(text);
 	}
@@ -95,15 +89,4 @@ public class ClientController {
 			uiC.setTextArea(decryptedMessage);
 		}
 	}
-//	public byte[] fromHexString(String s) {
-//	    int len = s.length();
-//	    byte[] data = new byte[len / 2];
-//	    for (int i = 0; i < len-1; i += 2) {
-//	        data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-//	                             + Character.digit(s.charAt(i+1), 16));
-//	    }
-//	    return data;
-//	}
-	
-	
 }

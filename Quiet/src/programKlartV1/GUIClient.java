@@ -22,7 +22,6 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
 public class GUIClient extends JPanel implements ActionListener {
-
 	private JPanel pnl = new JPanel(new BorderLayout());
 	private JPanel pnlWest = new JPanel(new GridLayout(2, 1));
 	private JPanel pnlCenter = new JPanel(new BorderLayout());

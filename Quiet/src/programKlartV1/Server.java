@@ -28,7 +28,7 @@ public class Server extends Thread {
 		start();
 	}
 	/**
-	 * Run metod som kopplar ihop sockets och skapar ny clienthandler och kör sedan run metoden i clientHandler klassen
+	 * Run metod som kopplar ihop sockets och skapar ny clienthandler och kï¿½r sedan run metoden i clientHandler klassen
 	 */
 	public void run() {
 		while (true) {
@@ -37,7 +37,7 @@ public class Server extends Thread {
 				ClientHandler handler = new ClientHandler(socket);
 				handler.start();
 			} catch (IOException e) {
-				e.getStackTrace();
+				
 			}
 		}
 	}
@@ -71,7 +71,7 @@ public class Server extends Thread {
 		private ObjectInputStream ois;
 		private User user;
 		/**
-		 * Konstruktor som lägger till handlers i handlerList
+		 * Konstruktor som lï¿½gger till handlers i handlerList
 		 * @param socket
 		 */
 		public ClientHandler(Socket socket) {
@@ -86,7 +86,7 @@ public class Server extends Thread {
 			return user;
 		}
 		/**
-		 * Run metod som kopplar ihop strömmar och hanterar objekt som kommer in iform av users och messages
+		 * Run metod som kopplar ihop strï¿½mmar och hanterar objekt som kommer in iform av users och messages
 		 */
 		public void run() {
 			try {
@@ -96,7 +96,6 @@ public class Server extends Thread {
 					Object o = ois.readObject();
 					if (o instanceof User) {
 						user = (User) o;
-						System.out.println("hejsan" + user.getName() + user.getPublicKey());
 						sendUserListToAll();
 					}else if(o instanceof Message) {
 						Message message = (Message)o;
