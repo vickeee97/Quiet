@@ -1,18 +1,18 @@
 package programKlartV1;
 
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.crypto.Cipher;
-import javax.swing.JFrame;
 
 public class ClientController {
 	private Client client;
 	private GUIInlog uiI;
 	private GUIClient uiC;
 	private LinkedList<Message> messages= new LinkedList<Message>();
+	private ArrayList<String> invalidUsernames = new ArrayList<String>();
 	
 	public ClientController(Client client, GUIInlog uiI, GUIClient uiC) {
 		this.client=client;
@@ -31,19 +31,22 @@ public class ClientController {
 	public void setUserList(LinkedList<User> userList) {
 		uiC.setUserList(userList);
 	}
+	public void setinvalidUsernames(ArrayList invalidUsernames) {
+		this.invalidUsernames=invalidUsernames;
+	}
 	public GUIClient getClient() {
 		return uiC;
 	}
 	public String getClientName() {
 		return client.getUserName();
 	}
-	public void setTextArea(Message message) {
-		uiC.setTextArea(message.getText());
+	public void addInMessageList(Message message) {
+		uiC.addInMessageList(message.getText());
 		messages.add(message);
 	}
 	public void sendMessage(List<String> selectedUsers, String m) {
 		
-		LinkedList<User> users=client.getUserList();
+		LinkedList<User> users=getUserList();
 		LinkedList<User> selectedU=new LinkedList<User>();
 		
 		for(int i=0; i<selectedUsers.size(); i++) {
@@ -86,7 +89,20 @@ public class ClientController {
 		for(Message selectedmessage: selectedM) {
 			System.out.println("reciecer" + selectedmessage.getText());
 			String decryptedMessage=client.decrypt(selectedmessage.getText());
-			uiC.setTextArea(decryptedMessage);
+			uiC.addInMessageList(decryptedMessage);
 		}
+	}
+	public boolean isUsernameValid(String username) {
+		if(!username.contains(" ") && !(username.length()==0)) {
+			System.out.println("1");
+			for(int i=0; i<invalidUsernames.size(); i++) {
+				System.out.println("2");
+				if(username==invalidUsernames.get(i)) {
+					System.out.println("3");
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

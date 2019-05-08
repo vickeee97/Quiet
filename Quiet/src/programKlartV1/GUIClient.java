@@ -12,7 +12,6 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -115,7 +114,7 @@ public class GUIClient extends JPanel implements ActionListener {
  * Method that sets the textArea to the string parameter by adding the string to LMMessageList
  * @param s
  */
-	public void setTextArea(String s) {
+	public void addInMessageList(String s) {
 		LMMessageList.addElement(s);
 
 	}

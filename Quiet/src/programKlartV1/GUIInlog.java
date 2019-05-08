@@ -64,15 +64,15 @@ public class GUIInlog extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		 if(e.getSource()==btnGoOnline) {
 			 String name = tfUsername.getText();
-			 if (!(name.isEmpty()) && !name.contains(" ")) {
-				 JFrame frame = new JFrame("Quiet: " + tfUsername.getText());
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.add(this.controller.getClient());
-					frame.pack();
-					frame.setVisible(true);
-					frame.setResizable(false);
-					setVisible(false);
-					controller.createUser(tfUsername.getText());  
+			 if(controller.isUsernameValid(name)) {
+				 JFrame frame = new JFrame("Quiet: " + name);
+				 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				 frame.add(this.controller.getClient());
+				 frame.pack();
+				 frame.setVisible(true);
+				 frame.setResizable(false);
+				 setVisible(false);
+				 controller.createUser(tfUsername.getText());  
 			}else{ 
 				JOptionPane.showMessageDialog(null, "Username is not valid.", "fel", 0);
 				

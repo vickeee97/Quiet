@@ -11,8 +11,8 @@ import java.util.Base64;
 
 import javax.crypto.Cipher;
 /**
- * Klass som hanterar ramverket för en User
- * @author Viktor
+ * Klass som hanterar ramverket fï¿½r en User
+ * @author Viktor och Kajsa 
  *
  */
 public class User implements Serializable{
@@ -46,14 +46,14 @@ public class User implements Serializable{
 	    return keyPairGenerator.genKeyPair();
 	}
 	/**
-	 * Metod som returnerar namnet på usern
+	 * Metod som returnerar namnet pï¿½ usern
 	 * @return userName
 	 */
 	public String getName(){
 		return userName;
 	}
 	/**
-	 * Metod som ger den publika nyckeln för usern
+	 * Metod som ger den publika nyckeln fï¿½r usern
 	 * @return publicKey
 	 */
 	public PublicKey getPublicKey() {
@@ -61,7 +61,7 @@ public class User implements Serializable{
 	}
 	/**
 	 * Metod som hanterar avkryptering av meddelande
-	 * @param encrypted, strängen man avkrypterar
+	 * @param encrypted, strï¿½ngen man avkrypterar
 	 * @return returnerar byte[]
 	 * @throws Exception
 	 */

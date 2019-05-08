@@ -1,11 +1,13 @@
 package programKlartV1;
 
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 /**
  * Klass som hanterar servern
@@ -15,6 +17,7 @@ import java.util.LinkedList;
 public class Server extends Thread {
 	private ServerSocket serverSocket;
 	private LinkedList<ClientHandler> handlerList = new LinkedList<ClientHandler>();
+	private ArrayList<String> invalidUsernames = new ArrayList<String>();
 	/**
 	 * Konstruktor som startar run metoden
 	 * @param port
@@ -49,7 +52,6 @@ public class Server extends Thread {
 		for(ClientHandler elem : handlerList) {
 			users.add(elem.getUser());
 		}
-		users.stream().forEach(user -> System.out.println(user.getName() + ": " + user.getPublicKey()));
 		try {
 			for(ClientHandler elem : handlerList) {
 				elem.getOutputStream().writeObject(users);
@@ -77,6 +79,7 @@ public class Server extends Thread {
 		public ClientHandler(Socket socket) {
 			this.socket=socket;
 			handlerList.add(this);
+			
 		}
 		/**
 		 * Metod som returnerar user
@@ -92,10 +95,17 @@ public class Server extends Thread {
 			try {
 				oos = new ObjectOutputStream(socket.getOutputStream());
 				ois = new ObjectInputStream(socket.getInputStream());
+				try {
+					oos.writeObject(invalidUsernames);
+					oos.flush();
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
 				while (true) {
 					Object o = ois.readObject();
 					if (o instanceof User) {
 						user = (User) o;
+						invalidUsernames.add(user.getName());
 						sendUserListToAll();
 					}else if(o instanceof Message) {
 						Message message = (Message)o;

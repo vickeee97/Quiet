@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Client extends Thread {
@@ -34,7 +35,10 @@ public class Client extends Thread {
 					users=userList;
 				}else if(o instanceof Message) {
 					Message m=(Message)o;
-					controller.setTextArea(m);
+					controller.addInMessageList(m);
+				}else if(o instanceof ArrayList) {
+					ArrayList<String> invalidUsernames=(ArrayList<String>)o;
+					controller.setinvalidUsernames(invalidUsernames);
 				}
 			}
 		} catch(Exception e) {
@@ -74,7 +78,6 @@ public class Client extends Thread {
 			this.user = new User(userName);
 			connect();
 			start();
-			System.out.println("create user" + user.getName() + user.getPublicKey());
 			try {
 				oos.writeObject(user);
 				oos.flush();

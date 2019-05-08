@@ -3,8 +3,8 @@ package programKlartV1;
 import java.io.Serializable;
 import java.util.LinkedList;
 /**
- * Klass som hanterar ramverket för ett message objekt
- * @author Viktor
+ * Klass som hanterar ramverket fï¿½r ett message objekt
+ * @author Viktor och Kajsa 
  *
  */
 public class Message implements Serializable{
@@ -30,7 +30,7 @@ public class Message implements Serializable{
 		return this.text;
 	}
 	/**
-	 * Metod som sätter texten
+	 * Metod som sï¿½tter texten
 	 * @param txt
 	 */
 	public void setText(String txt) {
