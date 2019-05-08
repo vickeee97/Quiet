@@ -21,9 +21,9 @@ public class GUIInlog extends JPanel implements ActionListener {
 	private JTextField tfUsername= new JTextField();
 	private JTextField tfPassword= new JTextField();
 	private JLabel lblUsername = new JLabel("Användarnamn");
-	private JLabel lblPassword = new JLabel("Lösenord");
-	private JButton btnLogin = new JButton("Logga in");
-	private JButton btnRegister = new JButton("Registrera");
+//	private JLabel lblPassword = new JLabel("Lösenord");
+//	private JButton btnLogin = new JButton("Logga in");
+	private JButton btnRegister = new JButton("Go online");
     private JButton btnExit = new JButton("Avbryt");
     private JPanel pnl=new JPanel(new BorderLayout());
     private JPanel pnlCenter= new JPanel(new GridLayout(7,1));
@@ -42,9 +42,9 @@ public class GUIInlog extends JPanel implements ActionListener {
 		pnlCenter.setBackground(Color.WHITE);
 		pnlCenter.add(lblUsername);
 		pnlCenter.add(tfUsername);
-		pnlCenter.add(lblPassword);
+	//	pnlCenter.add(lblPassword);
 		pnlCenter.add(tfPassword);
-		pnlCenter.add(btnLogin);
+	//	pnlCenter.add(btnLogin);
 		pnlCenter.add(btnRegister);
 		pnlCenter.add(btnExit);
 		
@@ -61,7 +61,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 		 * === ActionListeners ===
 		 */
 
-		btnLogin.addActionListener(this);
+	//	btnLogin.addActionListener(this);
 		btnRegister.addActionListener(this);
 		btnExit.addActionListener(this);
 	}
@@ -70,15 +70,15 @@ public class GUIInlog extends JPanel implements ActionListener {
     }
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==btnLogin) {
-			if (tfUsername.getText().length() == 0) {
-				JOptionPane.showMessageDialog(null, "Det valda användarnamnet är för kort. Försök igen.");
-			}else {
-				controller.createUser(tfUsername.getText());
-				
-			}
+//		if(e.getSource()==btnLogin) {
+//			if (tfUsername.getText().length() == 0) {
+//				JOptionPane.showMessageDialog(null, "Det valda användarnamnet är för kort. Försök igen.");
+//			}else {
+//				controller.createUser(tfUsername.getText());
+//				
+//			}
 			
-		}else if(e.getSource()==btnRegister) {
+		 if(e.getSource()==btnRegister) {
 			if (tfUsername.getText().length() == 0) {
 				JOptionPane.showMessageDialog(null, "Det valda användarnamnet är för kort. Försök igen.");
 			}else {
