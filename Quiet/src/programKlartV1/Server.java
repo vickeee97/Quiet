@@ -97,6 +97,7 @@ public class Server extends Thread {
 				ois = new ObjectInputStream(socket.getInputStream());
 				try {
 					oos.writeObject(invalidUsernames);
+					System.out.println("test server klassen" + invalidUsernames);
 					oos.flush();
 				}catch(IOException e) {
 					e.printStackTrace();

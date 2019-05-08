@@ -32,7 +32,12 @@ public class ClientController {
 		uiC.setUserList(userList);
 	}
 	public void setinvalidUsernames(ArrayList invalidUsernames) {
+		System.out.println("test clientcontroller klassen");
 		this.invalidUsernames=invalidUsernames;
+		System.out.println("getMetoden" + getInvalidUsernames() + "parameter" + invalidUsernames);
+	}
+	public ArrayList getInvalidUsernames() {
+		return this.invalidUsernames;
 	}
 	public GUIClient getClient() {
 		return uiC;
@@ -94,7 +99,7 @@ public class ClientController {
 	}
 	public boolean isUsernameValid(String username) {
 		if(!username.contains(" ") && !(username.length()==0)) {
-			System.out.println("1");
+			System.out.println("1" + invalidUsernames);
 			for(int i=0; i<invalidUsernames.size(); i++) {
 				System.out.println("2");
 				if(username==invalidUsernames.get(i)) {

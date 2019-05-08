@@ -39,6 +39,7 @@ public class Client extends Thread {
 				}else if(o instanceof ArrayList) {
 					ArrayList<String> invalidUsernames=(ArrayList<String>)o;
 					controller.setinvalidUsernames(invalidUsernames);
+					System.out.println("Test client klassen" + invalidUsernames);
 				}
 			}
 		} catch(Exception e) {
