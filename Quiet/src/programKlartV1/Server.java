@@ -114,7 +114,7 @@ public class Server extends Thread {
 					}
 				}
 			} catch (IOException | ClassNotFoundException e) {
-				e.printStackTrace();
+				
 			}	
 		}
 		public synchronized ObjectOutputStream getOutputStream() {
