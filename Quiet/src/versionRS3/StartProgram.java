@@ -3,7 +3,7 @@ package versionRS3;
 import javax.swing.JFrame;
 
 /**
- * Klass som startar inlogUI och clientUI
+ * Class that starts inlogUI and clientUI
  * @author Viktor
  *
  */

@@ -3,7 +3,7 @@ package versionRS3;
 import java.io.Serializable;
 import java.util.LinkedList;
 /**
- * Klass som hanterar ramverket f�r ett message objekt
+ * Class that manages the framework for a message object
  * @author Viktor och Kajsa 
  *
  */
@@ -12,10 +12,10 @@ public class Message implements Serializable{
 	private User sender;
 	private User reciever;
 	/**
-	 * Konstruktor som skapar ett message objekt
-	 * @param text, meddelande
-	 * @param sender, personen som skickade
-	 * @param reciever, person som ska ta emot meddelandet
+	 * Constructor who creates a message object
+	 * @param text, message
+	 * @param sender, person who sent the message
+	 * @param reciever, person who's recieving the message
 	 */
 	public Message(String text, User sender, User reciever) {
 		this.text=text;
@@ -23,28 +23,28 @@ public class Message implements Serializable{
 		this.reciever=reciever;
 	}
 	/**
-	 * metod som returnerar texten
+	 * method that returns the text
 	 * @return text
 	 */
 	public String getText() {
 		return this.text;
 	}
 	/**
-	 * Metod som s�tter texten
+	 * Method that puts the text
 	 * @param txt
 	 */
 	public void setText(String txt) {
 		this.text = txt;
 	}
 	/**
-	 * Metod som ger sendern
+	 * Method that returns the sender
 	 * @return sender
 	 */
 	public User getSender() {
 		return sender;
 	}
 	/**
-	 * Metod som get reciever
+	 * Method that returns the reciever
 	 * @return reciever
 	 */
 	public User getReciever() {

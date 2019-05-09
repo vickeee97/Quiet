@@ -11,7 +11,7 @@ import java.util.Base64;
 
 import javax.crypto.Cipher;
 /**
- * Klass som hanterar ramverket f�r en User
+ * Class that handles the framework for a User
  * @author Viktor och Kajsa 
  *
  */
@@ -20,7 +20,7 @@ public class User implements Serializable{
 	private PublicKey publicKey;
 	private PrivateKey privateKey;
 	/**
-	 * Konstruktor som skapar ett User objekt
+	 * Constructor who creates a User object
 	 * @param userName
 	 */
 	public User(String userName){
@@ -35,8 +35,8 @@ public class User implements Serializable{
         privateKey = keyPair.getPrivate();
 	}
 	/**
-	 * Metod som skapar keypair, en privat och en publik nyckel
-	 * @return returnerar keypair
+	 * Method that creates keypair, a private and a public key
+	 * @return return keypair
 	 * @throws NoSuchAlgorithmException
 	 */
 	public KeyPair buildKeyPair() throws NoSuchAlgorithmException {
@@ -46,23 +46,23 @@ public class User implements Serializable{
 	    return keyPairGenerator.genKeyPair();
 	}
 	/**
-	 * Metod som returnerar namnet p� usern
+	 * Method that returns the name of the user
 	 * @return userName
 	 */
 	public String getName(){
 		return userName;
 	}
 	/**
-	 * Metod som ger den publika nyckeln f�r usern
+	 * Method that gives the public key for user
 	 * @return publicKey
 	 */
 	public PublicKey getPublicKey() {
 		return publicKey;
 	}
 	/**
-	 * Metod som hanterar avkryptering av meddelande
-	 * @param encrypted, str�ngen man avkrypterar
-	 * @return returnerar byte[]
+	 * Method that handles the decryption of the messages
+	 * @param encrypted, the string that's going to get decrypted
+	 * @return return byte[]
 	 * @throws Exception
 	 */
 	public String decrypt(String encrypted) throws Exception {

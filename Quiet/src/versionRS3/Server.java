@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.LinkedList;
 /**
- * Klass som hanterar servern
+ * Class that handles the server
  * @author Viktor och Kajsa
  *
  */
@@ -19,7 +19,7 @@ public class Server extends Thread {
 	private LinkedList<ClientHandler> handlerList = new LinkedList<ClientHandler>();
 	private ArrayList<String> invalidUsernames = new ArrayList<String>();
 	/**
-	 * Konstruktor som startar run metoden
+	 * Constructor who starts the run method
 	 * @param port
 	 */
 	public Server(int port) {
@@ -31,7 +31,7 @@ public class Server extends Thread {
 		start();
 	}
 	/**
-	 * Run metod som kopplar ihop sockets och skapar ny clienthandler och k�r sedan run metoden i clientHandler klassen
+	 * Run method that connects sockets and creates new client handler and then runs the run method in clientHandler class
 	 */
 	public void run() {
 		while (true) {
@@ -45,7 +45,7 @@ public class Server extends Thread {
 		}
 	}
 	/**
-	 * Delar ut clientHandlers till users
+	 * Handles client handlers to users
 	 */
 	public void sendUserListToAll() {
 		LinkedList<User> users = new LinkedList<User>();
@@ -62,7 +62,7 @@ public class Server extends Thread {
 		}
 	}
 	/**
-	 * Klass som hanterar clientHandlers
+	 * Class that handles clientHandlers
 	 * @author Kajsa och Viktor
 	 *
 	 */
@@ -73,7 +73,7 @@ public class Server extends Thread {
 		private ObjectInputStream ois;
 		private User user;
 		/**
-		 * Konstruktor som l�gger till handlers i handlerList
+		 * Constructor who adds handlers to the handlerList
 		 * @param socket
 		 */
 		public ClientHandler(Socket socket) {
@@ -82,14 +82,14 @@ public class Server extends Thread {
 			
 		}
 		/**
-		 * Metod som returnerar user
+		 * Method that returns user
 		 * @return user
 		 */
 		public User getUser() {
 			return user;
 		}
 		/**
-		 * Run metod som kopplar ihop str�mmar och hanterar objekt som kommer in iform av users och messages
+		 * Run method that connects streams and handles objects that come in as users and messages
 		 */
 		public void run() {
 			try {
@@ -121,7 +121,7 @@ public class Server extends Thread {
 		}
 	}
 	/**
-	 * Metod som skickar meddelandet till recievern
+	 * Method that sends the message to the recievern
 	 * @param message
 	 */
 	public synchronized void sendMessage(Message message) {
@@ -137,7 +137,7 @@ public class Server extends Thread {
 			}
 		}
 	/**
-	 * Metod som startar servern
+	 * Method that starts the server
 	 * @param args
 	 */
 	public static void main(String[] args) {
