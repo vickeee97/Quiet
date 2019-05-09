@@ -15,7 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+/**
+ * Method that created the log in UI
+ * @author Viktor, Kajsa, Emil
+ *
+ */
 public class GUIInlog extends JPanel implements ActionListener {
 	private JTextField tfUsername= new JTextField();
 	private JLabel lblUsername = new JLabel("Username");
