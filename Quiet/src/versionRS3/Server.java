@@ -17,6 +17,7 @@ import java.util.LinkedList;
 public class Server extends Thread {
 	private ServerSocket serverSocket;
 	private LinkedList<ClientHandler> handlerList = new LinkedList<ClientHandler>();
+	private ArrayList<String> invalidUsernames = new ArrayList<String>();
 	/**
 	 * Konstruktor som startar run metoden
 	 * @param port
@@ -94,10 +95,17 @@ public class Server extends Thread {
 			try {
 				oos = new ObjectOutputStream(socket.getOutputStream());
 				ois = new ObjectInputStream(socket.getInputStream());
+				try {
+					oos.writeObject(invalidUsernames);
+					oos.flush();
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
 				while (true) {
 					Object o = ois.readObject();
 					if (o instanceof User) {
 						user = (User) o;
+						invalidUsernames.add(user.getName());
 						sendUserListToAll();
 					}else if(o instanceof Message) {
 						Message message = (Message)o;

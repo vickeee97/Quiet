@@ -23,6 +23,8 @@ public class Client extends Thread {
 	public Client(String ip, int port) {
 		this.ip = ip;
 		this.port = port;
+		connect();
+		start();
 	}
 	public void setController(ClientController controller) {
 		this.controller=controller;
@@ -39,6 +41,9 @@ public class Client extends Thread {
 				}else if(o instanceof Message) {
 					Message m=(Message)o;
 					controller.addInMessageList(m);
+				}else if(o instanceof ArrayList) {
+					ArrayList<String> invalidUsernames=(ArrayList<String>)o;
+					controller.setinvalidUsernames(invalidUsernames);
 				}
 			}
 		} catch(Exception e) {
@@ -46,7 +51,7 @@ public class Client extends Thread {
 		}
 	}
 	
-	public void connect() throws ConnectException {
+	public void connect() {
 		try {
 			socket = new Socket(ip, port);
 			oos = new ObjectOutputStream((socket.getOutputStream()));
@@ -76,13 +81,6 @@ public class Client extends Thread {
 	
 	public void createUser(String userName) {
 			this.user = new User(userName);
-			try {
-				connect();
-			} catch (ConnectException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, "Connection refused, start the server");
-			}
-			start();
 			try {
 				oos.writeObject(user);
 				oos.flush();

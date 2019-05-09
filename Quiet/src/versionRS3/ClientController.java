@@ -12,6 +12,7 @@ public class ClientController {
 	private GUIInlog uiI;
 	private GUIClient uiC;
 	private LinkedList<Message> messages= new LinkedList<Message>();
+	private ArrayList<String> invalidUsernames = new ArrayList<String>();
 	
 	public ClientController(Client client, GUIInlog uiI, GUIClient uiC) {
 		this.client=client;
@@ -39,6 +40,12 @@ public class ClientController {
 	public void addInMessageList(Message message) {
 		uiC.addInMessageList(message.getText());
 		messages.add(message);
+	}
+	public void setinvalidUsernames(ArrayList invalidUsernames) {
+		this.invalidUsernames=invalidUsernames;
+	}
+	public ArrayList getInvalidUsernames() {
+		return this.invalidUsernames;
 	}
 	public void sendMessage(List<String> selectedUsers, String m) {
 		
@@ -83,9 +90,18 @@ public class ClientController {
 			}
 		}
 		for(Message selectedmessage: selectedM) {
-			System.out.println("reciecer" + selectedmessage.getText());
 			String decryptedMessage=client.decrypt(selectedmessage.getText());
 			uiC.addInMessageList(decryptedMessage);
 		}
+	}
+	public boolean isUsernameValid(String username) {
+		if(!username.contains(" ") && !(username.length()==0)) {
+			for(int i=0; i<invalidUsernames.size(); i++) {
+				if(username.equals(invalidUsernames.get(i))) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

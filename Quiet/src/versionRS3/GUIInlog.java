@@ -64,7 +64,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		 if(e.getSource()==btnGoOnline) {
 			 String name = tfUsername.getText();
-			 if(!(name.length()==0) && !name.contains(" ")) {
+			 if(controller.isUsernameValid(name)) {
 				 JFrame frame = new JFrame("Quiet: " + name);
 				 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				 frame.add(this.controller.getClient());
