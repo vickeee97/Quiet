@@ -20,6 +20,12 @@ public class Client extends Thread {
 	private User user;
 	private ClientController controller;
 	
+	/**
+	 * Constructor with ip and port variabels as parameters, also calls the method connect and starts the thread
+	 * @param ip
+	 * @param port
+	 */
+	
 	public Client(String ip, int port) {
 		this.ip = ip;
 		this.port = port;
@@ -29,6 +35,10 @@ public class Client extends Thread {
 	public void setController(ClientController controller) {
 		this.controller=controller;
 	}
+	
+	/**
+	 * run method that read an object using ObjectInputStream and has different if else statements depending on what the object is
+	 */
 	
 	public void run() {
 		try {
@@ -51,6 +61,10 @@ public class Client extends Thread {
 		}
 	}
 	
+	/**
+	 * Method that instantiates the streams.
+	 */
+	
 	public void connect() {
 		try {
 			socket = new Socket(ip, port);
@@ -61,15 +75,34 @@ public class Client extends Thread {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 
+	 * @return LinkedList users
+	 */
 	public LinkedList<User> getUserList() {
 		return users;
 	}
+	
+	/**
+	 * 
+	 * @return user
+	 */
 	public User getUser() {
 		return user;
 	}
+	
+	/**
+	 * @return userName
+	 */
 	public String getUserName() {
 		return user.getName();
 	}
+	
+	/**
+	 *  Synchronized method that send the parameter to the server by using the ObjectOutputStream
+	 * @param message
+	 */
 	public synchronized void sendMessage(Message message) {
 		try {
 			oos.writeObject(message);
@@ -79,6 +112,10 @@ public class Client extends Thread {
 		}
 	}
 	
+	/**
+	 * Method that creates a user using the parameter userName and writes the user to the server
+	 * @param userName
+	 */
 	public void createUser(String userName) {
 			this.user = new User(userName);
 			try {
@@ -88,6 +125,12 @@ public class Client extends Thread {
 				e.printStackTrace();
 			}
 	}
+	
+	/**
+	 * Method that decrypts the parameter String encrytedMessage 
+	 * @param encryptedMessage
+	 * @return the decrypted string
+	 */
 	public String decrypt(String encryptedMessage) {
 		String decryptedMessage= null;
 		try {
