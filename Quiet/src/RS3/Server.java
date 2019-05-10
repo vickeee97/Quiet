@@ -1,4 +1,4 @@
-package versionRS3;
+package RS3;
 
 
 import java.io.EOFException;
