@@ -170,6 +170,8 @@ public class ClientController {
 					return false;
 				}
 			}
+		}else {
+			return false;
 		}
 		return true;
 	}
