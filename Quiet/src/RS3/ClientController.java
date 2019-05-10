@@ -8,8 +8,8 @@ import java.util.List;
 import javax.crypto.Cipher;
 
 /**
- * 
- *  Class that acts like a communicator between other classes. Also contains RSA methods that deals with encryption and decryption of messages
+ * Class that acts like a communicator between other classes. Also contains RSA methods that deals with encryption and decryption of messages
+ * @author kajsapihl
  *
  */
 public class ClientController {
