@@ -159,12 +159,12 @@ public class ClientController {
 	}
 	
 	/**
-	 *  Method that checks if a username is already used, returns true if that is the case.
+	 *  Method that checks if a username is already used, returns false if that is the case.
 	 * @param username
 	 * @return
 	 */
 	public boolean isUsernameValid(String username) {
-		if(!username.contains(" ") && !(username.length()==0)) {
+		if(!(username.contains(" ")) && (username.length()-1>0)) {
 			for(int i=0; i<invalidUsernames.size(); i++) {
 				if(username.equals(invalidUsernames.get(i))) {
 					return false;
