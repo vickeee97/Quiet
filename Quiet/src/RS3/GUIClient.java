@@ -21,6 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
+import offline.InfoUI;
+
 /**
  * 
  * Method that creates the client UI, fills the list of connected clients also contains what happends when the two buttons "encrypt and send" and "decrypt" is pressed.
@@ -41,6 +43,7 @@ public class GUIClient extends JPanel implements ActionListener {
 	private JButton btnDecrypt = new JButton("Decrypt");
 	private JButton btnClear= new JButton("Clear messages");
 	private JButton btnGoOffline= new JButton("Go offline!");
+	private JButton btnHelp = new JButton ("Help and information.");
 
 	private DefaultListModel<String> LMKontactList = new DefaultListModel<String>();
 	private JList<String> kontactList = new JList<String>(LMKontactList);
@@ -60,6 +63,7 @@ public class GUIClient extends JPanel implements ActionListener {
 		JScrollBar kontaktScrollBar = jspKontaktList.getVerticalScrollBar();
 		JScrollBar messageScrollBar = scrollMessageList.getVerticalScrollBar();
 
+		btnHelp.setSize(30, 30);
 		add(pnl);
 		pnlWest.setPreferredSize(new Dimension(200, 400));
 		pnlCenter.setPreferredSize(new Dimension(400, 400));
@@ -70,12 +74,17 @@ public class GUIClient extends JPanel implements ActionListener {
 		pnl.add(pnlWest, BorderLayout.WEST);
 		pnl.add(pnlCenter, BorderLayout.CENTER);
 		pnl.add(btnGoOffline, BorderLayout.NORTH);
+		pnl.add(btnHelp, BorderLayout.AFTER_LAST_LINE);
+
 
 		jspKontaktList.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		kontactList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		kontactList.setLayoutOrientation(JList.VERTICAL);
 		kontactList.setVisibleRowCount(-1);
 		pnlWest.add(lblBild);
+
+
+
 		pnlWest.add(jspKontaktList);
 
 		pnlCenterS.add(btnDecrypt);
@@ -94,13 +103,14 @@ public class GUIClient extends JPanel implements ActionListener {
 		messageList.setVisibleRowCount(-1);
 
 		taMessage.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-/*
- * Adding actionListeners for the two buttons
- */
+		/*
+		 * Adding actionListeners for the two buttons
+		 */
 		btnDecrypt.addActionListener(this);
 		btnEncryptnSend.addActionListener(this);
 		btnClear.addActionListener(this);
 		btnGoOffline.addActionListener(this);
+		btnHelp.addActionListener(this);
 	}
 
 	/**
@@ -117,10 +127,10 @@ public class GUIClient extends JPanel implements ActionListener {
 			LMKontactList.addElement(temp);
 		}
 	}
-/**
- * Method that sets the textArea to the string parameter by adding the string to LMMessageList
- * @param s
- */
+	/**
+	 * Method that sets the textArea to the string parameter by adding the string to LMMessageList
+	 * @param s
+	 */
 	public void addInMessageList(String s) {
 		LMMessageList.addElement(s);
 	}
@@ -140,7 +150,7 @@ public class GUIClient extends JPanel implements ActionListener {
 	 * 
 	 * the selected messages that the user have received is decrypted by sending these messages as a parameter to the decrypyMessage() method in the controller class.
 	 */
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnEncryptnSend) {
 			if(taMessage.getText().length()!=0) {
@@ -151,24 +161,28 @@ public class GUIClient extends JPanel implements ActionListener {
 				}else {
 					JOptionPane.showMessageDialog(null, "You must select a reciever");
 				}
-					
+
 			}else {
 				JOptionPane.showMessageDialog(null, "You cannot send a blank message");
 			}
-			
+
 		}else if (e.getSource() == btnDecrypt) {
 			List<String> selectedMessages = messageList.getSelectedValuesList();
-			if(selectedMessages.size()!=0) {
+			if (selectedMessages.size() > 1) {
+				JOptionPane.showMessageDialog(null, "Please decrypt one message at a time.", "Error", 0);
+			} else if(selectedMessages.size()!=0) {
+				int index = messageList.getSelectedIndex();
+				LMMessageList.remove(index);
 				controller.decryptMessage(selectedMessages);
-			}else {
-				JOptionPane.showMessageDialog(null, "You must select a message");
-			}
-			
-		}else if(e.getSource()==btnClear) {
-			LMMessageList.removeAllElements();
-		}else if(e.getSource()==btnGoOffline) {
-			System.exit(0);
-		}
-	}
 
+			}else if(e.getSource()==btnClear) {
+				LMMessageList.removeAllElements();
+			}else if(e.getSource()==btnGoOffline) {
+				System.exit(0);
+			} else if (e.getSource() == btnHelp) {
+				InfoUI ui = new InfoUI();
+			}
+		}
+
+	}
 }
