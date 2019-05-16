@@ -21,8 +21,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
-
-
 /**
  * 
  * Method that creates the client UI, fills the list of connected clients also contains what happends when the two buttons "encrypt and send" and "decrypt" is pressed.
@@ -43,7 +41,11 @@ public class GUIClient extends JPanel implements ActionListener {
 	private JButton btnDecrypt = new JButton("Decrypt");
 	private JButton btnClear= new JButton("Clear messages");
 	private JButton btnGoOffline= new JButton("Go offline!");
+
+
 	private JButton btnHelp = new JButton ("Help and information.");
+
+
 
 	private DefaultListModel<String> LMKontactList = new DefaultListModel<String>();
 	private JList<String> kontactList = new JList<String>(LMKontactList);
@@ -55,6 +57,7 @@ public class GUIClient extends JPanel implements ActionListener {
 	private ImageIcon img = new ImageIcon(this.getClass().getResource("/quiet.png"));
 	private JLabel lblBild = new JLabel(img);
 	private ClientController controller;
+
 
 	/**
 	 * Constructor where the declared "parts" are added to the frame
@@ -128,10 +131,12 @@ public class GUIClient extends JPanel implements ActionListener {
 		}
 	}
 	/**
-	 * Method that sets the textArea to the string parameter by adding the string to LMMessageList
+	 * Method adds the parameter string to the list LMMessageList
 	 * @param s
 	 */
 	public void addInMessageList(String s) {
+		
+		
 		LMMessageList.addElement(s);
 	}
 
@@ -161,28 +166,37 @@ public class GUIClient extends JPanel implements ActionListener {
 				}else {
 					JOptionPane.showMessageDialog(null, "You must select a reciever");
 				}
-
+					
 			}else {
 				JOptionPane.showMessageDialog(null, "You cannot send a blank message");
 			}
-
+			
 		}else if (e.getSource() == btnDecrypt) {
+			
+			
 			List<String> selectedMessages = messageList.getSelectedValuesList();
-			if (selectedMessages.size() > 1) {
-				JOptionPane.showMessageDialog(null, "Please decrypt one message at a time.", "Error", 0);
-			} else if(selectedMessages.size()!=0) {
+			
+		if (selectedMessages.size() > 1) {
+			JOptionPane.showMessageDialog(null, "Please decrypt one message at a time.", "Error", 0);
+		} else if(selectedMessages.size()!=0) {
 				int index = messageList.getSelectedIndex();
 				LMMessageList.remove(index);
 				controller.decryptMessage(selectedMessages);
-
-			}else if(e.getSource()==btnClear) {
-				LMMessageList.removeAllElements();
-			}else if(e.getSource()==btnGoOffline) {
-				System.exit(0);
-			} else if (e.getSource() == btnHelp) {
-				InfoUI ui = new InfoUI();
+			}else {
+				JOptionPane.showMessageDialog(null, "You must select a message");
 			}
+			
+		}else if(e.getSource()==btnClear) {
+			LMMessageList.removeAllElements();
+		}else if(e.getSource()==btnGoOffline) {
+			System.exit(0);
+		}else if (e.getSource() == btnHelp) {
+			InfoUI ui = new InfoUI();
 		}
-
 	}
+
+
+
+
+
 }
