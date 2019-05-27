@@ -66,7 +66,6 @@ public class User implements Serializable{
 	 * @throws Exception
 	 */
 	public String decrypt(String encrypted) throws Exception {
-		System.out.println("public key " + publicKey);
 		byte[] klar= Base64.getDecoder().decode(encrypted);
 	    Cipher cipher = Cipher.getInstance("RSA");
 	    cipher.init(Cipher.DECRYPT_MODE, privateKey);
