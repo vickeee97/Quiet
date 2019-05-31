@@ -32,7 +32,6 @@ public class GUIInlog extends JPanel implements ActionListener {
 	private ClientController controller;
 	
 	public GUIInlog() {
-		
 		add(pnl, BorderLayout.CENTER);
 		
 		/**
@@ -61,6 +60,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 		btnGoOnline.addActionListener(this);
 		btnExit.addActionListener(this);
 	}
+	
 	public void setController(ClientController controller) {
     	this.controller=controller;
     }
@@ -79,11 +79,9 @@ public class GUIInlog extends JPanel implements ActionListener {
 				 controller.createUser(tfUsername.getText());  
 			}else{ 
 				JOptionPane.showMessageDialog(null, "Username is not valid.", "fel", 0);
-				
 			}
 		}else if(e.getSource()==btnExit) {
 			System.exit(0);
 		}
 	}
 }
-
