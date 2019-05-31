@@ -32,6 +32,7 @@ public class Client extends Thread {
 		connect();
 		start();
 	}
+	
 	public void setController(ClientController controller) {
 		this.controller=controller;
 	}
@@ -70,7 +71,6 @@ public class Client extends Thread {
 			socket = new Socket(ip, port);
 			oos = new ObjectOutputStream((socket.getOutputStream()));
 			ois = new ObjectInputStream((socket.getInputStream()));
-
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -80,6 +80,7 @@ public class Client extends Thread {
 	 * 
 	 * @return LinkedList users
 	 */
+	
 	public LinkedList<User> getUserList() {
 		return users;
 	}
@@ -88,6 +89,7 @@ public class Client extends Thread {
 	 * 
 	 * @return user
 	 */
+	
 	public User getUser() {
 		return user;
 	}
@@ -95,6 +97,7 @@ public class Client extends Thread {
 	/**
 	 * @return userName
 	 */
+	
 	public String getUserName() {
 		return user.getName();
 	}
@@ -103,6 +106,7 @@ public class Client extends Thread {
 	 *  Synchronized method that send the parameter to the server by using the ObjectOutputStream
 	 * @param message
 	 */
+	
 	public synchronized void sendMessage(Message message) {
 		try {
 			oos.writeObject(message);
@@ -116,6 +120,7 @@ public class Client extends Thread {
 	 * Method that creates a user using the parameter userName and writes the user to the server
 	 * @param userName
 	 */
+	
 	public void createUser(String userName) {
 			this.user = new User(userName);
 			try {
@@ -131,6 +136,7 @@ public class Client extends Thread {
 	 * @param encryptedMessage
 	 * @return the decrypted string
 	 */
+	
 	public String decrypt(String encryptedMessage) {
 		String decryptedMessage= null;
 		try {
