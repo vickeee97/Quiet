@@ -30,6 +30,7 @@ import javax.swing.ListSelectionModel;
 /*
  * All parts of client GUI is declared and created.
  */
+
 public class GUIClient extends JPanel implements ActionListener {
 	private JPanel pnl = new JPanel(new BorderLayout());
 	private JPanel pnlWest = new JPanel(new GridLayout(2, 1));
@@ -41,11 +42,7 @@ public class GUIClient extends JPanel implements ActionListener {
 	private JButton btnDecrypt = new JButton("Decrypt");
 	private JButton btnClear= new JButton("Clear messages");
 	private JButton btnGoOffline= new JButton("Go offline!");
-
-
 	private JButton btnHelp = new JButton ("Help and information.");
-
-
 
 	private DefaultListModel<String> LMKontactList = new DefaultListModel<String>();
 	private JList<String> kontactList = new JList<String>(LMKontactList);
@@ -58,10 +55,10 @@ public class GUIClient extends JPanel implements ActionListener {
 	private JLabel lblBild = new JLabel(img);
 	private ClientController controller;
 
-
 	/**
 	 * Constructor where the declared "parts" are added to the frame
 	 */
+
 	public GUIClient() {
 		JScrollBar kontaktScrollBar = jspKontaktList.getVerticalScrollBar();
 		JScrollBar messageScrollBar = scrollMessageList.getVerticalScrollBar();
@@ -79,15 +76,12 @@ public class GUIClient extends JPanel implements ActionListener {
 		pnl.add(btnGoOffline, BorderLayout.NORTH);
 		pnl.add(btnHelp, BorderLayout.AFTER_LAST_LINE);
 
-
 		jspKontaktList.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		kontactList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		kontactList.setLayoutOrientation(JList.VERTICAL);
 		kontactList.setVisibleRowCount(-1);
+
 		pnlWest.add(lblBild);
-
-
-
 		pnlWest.add(jspKontaktList);
 
 		pnlCenterS.add(btnDecrypt);
@@ -106,9 +100,11 @@ public class GUIClient extends JPanel implements ActionListener {
 		messageList.setVisibleRowCount(-1);
 
 		taMessage.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+
 		/*
 		 * Adding actionListeners for the two buttons
 		 */
+
 		btnDecrypt.addActionListener(this);
 		btnEncryptnSend.addActionListener(this);
 		btnClear.addActionListener(this);
@@ -120,6 +116,7 @@ public class GUIClient extends JPanel implements ActionListener {
 	 * Method that clears the defaultListModel and then fills it with the LinkedList parameter
 	 * @param userList
 	 */
+
 	public void setUserList(LinkedList<User> userList) {
 		if (LMKontactList.getSize() > 0) {
 			LMKontactList.removeAllElements();
@@ -130,13 +127,13 @@ public class GUIClient extends JPanel implements ActionListener {
 			LMKontactList.addElement(temp);
 		}
 	}
+
 	/**
 	 * Method adds the parameter string to the list LMMessageList
 	 * @param s
 	 */
+
 	public void addInMessageList(String s) {
-		
-		
 		LMMessageList.addElement(s);
 	}
 
@@ -144,6 +141,7 @@ public class GUIClient extends JPanel implements ActionListener {
 	 * 
 	 * @param controller
 	 */
+
 	public void setController(ClientController controller) {
 		this.controller = controller;
 	}
@@ -165,27 +163,23 @@ public class GUIClient extends JPanel implements ActionListener {
 					taMessage.setText("");
 				}else {
 					JOptionPane.showMessageDialog(null, "You must select a reciever");
-				}
-					
-			}else {
+			}	
+				}else {
 				JOptionPane.showMessageDialog(null, "You cannot send a blank message");
 			}
-			
-		}else if (e.getSource() == btnDecrypt) {
-			
-			
+				}else if (e.getSource() == btnDecrypt) {
 			List<String> selectedMessages = messageList.getSelectedValuesList();
-			
-		if (selectedMessages.size() > 1) {
-			JOptionPane.showMessageDialog(null, "Please decrypt one message at a time.", "Error", 0);
-		} else if(selectedMessages.size()!=0) {
+
+			if (selectedMessages.size() > 1) {
+				JOptionPane.showMessageDialog(null, "Please decrypt one message at a time.", "Error", 0);
+			}else if(selectedMessages.size()!=0) {
 				int index = messageList.getSelectedIndex();
 				LMMessageList.remove(index);
 				controller.decryptMessage(selectedMessages);
 			}else {
 				JOptionPane.showMessageDialog(null, "You must select a message");
 			}
-			
+
 		}else if(e.getSource()==btnClear) {
 			LMMessageList.removeAllElements();
 		}else if(e.getSource()==btnGoOffline) {
@@ -194,9 +188,4 @@ public class GUIClient extends JPanel implements ActionListener {
 			InfoUI ui = new InfoUI();
 		}
 	}
-
-
-
-
-
 }
