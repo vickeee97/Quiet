@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 /**
  * Method that created the log in UI
- * @author Viktor, Kajsa, Emil
+ * @author Viktor, Kajsa, Emil, Jacob
  *
  */
 public class GUIInlog extends JPanel implements ActionListener {
@@ -25,6 +25,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 	private JLabel lblUsername = new JLabel("Username");
 	private JButton btnGoOnline = new JButton("Go online!");
     private JButton btnExit = new JButton("Avbryt");
+	private JButton btnTheme = new JButton ("Change theme");
     private JPanel pnl=new JPanel(new BorderLayout());
     private JPanel pnlCenter= new JPanel(new GridLayout(7,1));
     private ImageIcon img = new ImageIcon(this.getClass().getResource("/quiet.png"));
@@ -43,6 +44,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 		pnlCenter.add(tfUsername);
 		pnlCenter.add(btnGoOnline);
 		pnlCenter.add(btnExit);
+		pnlCenter.add(btnTheme);
 		
 		/**
 		 * === PNL ===
@@ -59,6 +61,7 @@ public class GUIInlog extends JPanel implements ActionListener {
 
 		btnGoOnline.addActionListener(this);
 		btnExit.addActionListener(this);
+		btnTheme.addActionListener(this);
 	}
 	
 	public void setController(ClientController controller) {
@@ -82,6 +85,8 @@ public class GUIInlog extends JPanel implements ActionListener {
 			}
 		}else if(e.getSource()==btnExit) {
 			System.exit(0);
-		}
+		}else if (e.getSource() == btnTheme) {
+			Themes th = new Themes();
 	}
+}
 }
