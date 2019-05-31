@@ -39,6 +39,7 @@ public class ClientController {
 	 * Method that calls the method createUser in the class client with the parameter userName
 	 * @param userName
 	 */
+	
 	public void createUser(String userName) {
 		client.createUser(userName);
 	}
@@ -47,6 +48,7 @@ public class ClientController {
 	 * Method that calls the method getUserList in the class client, and then returns the LinkedList
 	 * @return LinkedList <user> Users
 	 */
+	
 	public LinkedList<User> getUserList() {
 		return client.getUserList();
 	}
@@ -55,9 +57,11 @@ public class ClientController {
 	 *  Method that calls the method setUserList() in the class GUIClient with the parameter userList
 	 * @param userList
 	 */
+	
 	public void setUserList(LinkedList<User> userList) {
 		uiC.setUserList(userList);
 	}
+	
 	public GUIClient getClient() {
 		return uiC;
 	}
@@ -66,6 +70,7 @@ public class ClientController {
 	 * Method that calls the method getUserName in the class client and returns the string userName
 	 * @return userName
 	 */
+	
 	public String getClientName() {
 		return client.getUserName();
 	}
@@ -74,6 +79,7 @@ public class ClientController {
 	 * Method that adds the parameter message in the LinkedList messages
 	 * @param message
 	 */
+	
 	public void addInMessageList(Message message) {
 		uiC.addInMessageList(message.getText());
 		messages.add(message);
@@ -90,6 +96,7 @@ public class ClientController {
 	 * 
 	 * @return ArraList invalidUserNames
 	 */
+	
 	public ArrayList getInvalidUsernames() {
 		return this.invalidUsernames;
 	}
@@ -99,8 +106,8 @@ public class ClientController {
 	 * @param selectedUsers
 	 * @param m
 	 */
+	
 	public void sendMessage(List<String> selectedUsers, String m) {
-		
 		LinkedList<User> users=getUserList();
 		LinkedList<User> selectedU=new LinkedList<User>();
 		
@@ -120,8 +127,7 @@ public class ClientController {
 			}
 			Message message= new Message(encryptedMessage, client.getUser(), selectedU.get(k));
 			client.sendMessage(message);
-		}
-		
+		}	
 	}
 	
 	/**
@@ -131,6 +137,7 @@ public class ClientController {
 	 * @return
 	 * @throws Exception
 	 */
+	
 	public String encrypt(String message, PublicKey publicKey) throws Exception {
 		Cipher cipher = Cipher.getInstance("RSA");
 	    cipher.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -142,9 +149,9 @@ public class ClientController {
 	 * Method that decrypts the selected messages that the methods takes in as a parameter
 	 * @param selectedMessages
 	 */
+	
 	public void decryptMessage(List<String> selectedMessages) {
 		LinkedList<Message> selectedM = new LinkedList<Message>();
-		
 		for(Message message: messages) {
 			for(String selected: selectedMessages) {
 				if(message.getText()==selected) {
@@ -163,6 +170,7 @@ public class ClientController {
 	 * @param username
 	 * @return
 	 */
+	
 	public boolean isUsernameValid(String username) {
 		if(!(username.contains(" ")) && (username.length()-1>0)) {
 			for(int i=0; i<invalidUsernames.size(); i++) {
@@ -170,7 +178,7 @@ public class ClientController {
 					return false;
 				}
 			}
-		}else {
+		}else { 
 			return false;
 		}
 		return true;
