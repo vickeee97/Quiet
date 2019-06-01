@@ -9,6 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author Emil Dahl
+ *
+ */
 
 public class InfoUI extends JFrame implements ActionListener {
 	private JButton btnSend = new JButton("How do I send a message?");
