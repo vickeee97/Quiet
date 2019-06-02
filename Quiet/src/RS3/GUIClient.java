@@ -37,7 +37,7 @@ public class GUIClient extends JPanel implements ActionListener {
 	private JPanel pnlCenter = new JPanel(new BorderLayout());
 	private JPanel pnlCenterSouth = new JPanel(new BorderLayout());
 	private JPanel pnlCenterS = new JPanel(new GridLayout(3, 1));
-	private JTextArea taMessage = new JTextArea();
+	private JTextArea taMessage = new JTextArea("Skriv ett meddelande..");
 	private JButton btnEncryptnSend = new JButton("Encrypt and send");
 	private JButton btnDecrypt = new JButton("Decrypt");
 	private JButton btnClear= new JButton("Clear messages");
